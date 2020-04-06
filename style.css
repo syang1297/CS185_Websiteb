@@ -1,1 +1,22 @@
-    
+.header{
+
+}
+
+.nav-bar{
+    display: flex;
+}
+.nav-bar > div {
+    padding: 10px; 
+}
+
+.tab{
+    background-color: rgba(45, 100, 63, 0.705);
+}
+
+/* .tab.extra{
+    background-color: black;
+} */
+
+.main-body{
+    display: flex;
+}
