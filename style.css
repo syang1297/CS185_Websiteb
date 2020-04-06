@@ -1,4 +1,11 @@
 .header{
+    font: helvetica;
+    text-align: center;
+    background-image: url(src/ocean.gif);
+    padding: 30px;
+    /* text-emphasis-color: white; */
+    color: whitesmoke;
+    font-style: italic;
 
 }
 
@@ -11,6 +18,13 @@
 
 .tab{
     background-color: rgba(45, 100, 63, 0.705);
+}
+
+.bio{
+    color: rgba(150, 37, 80, 0.74);
+    background-color: white;
+    border: 50px;
+    border-color: rgba(150, 36, 80, .74);
 }
 
 /* .tab.extra{
