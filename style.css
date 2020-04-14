@@ -3,34 +3,79 @@
     text-align: center;
     background-image: url(src/ocean.gif);
     padding: 30px;
-    /* text-emphasis-color: white; */
     color: whitesmoke;
     font-style: italic;
-
 }
 
 .nav-bar{
     display: flex;
+    position: sticky;
 }
+
 .nav-bar > div {
     padding: 10px; 
+    /* text-decoration: none; */
 }
 
 .tab{
-    background-color: rgba(45, 100, 63, 0.705);
+    text-decoration: none;
+    background-color: rgba(150, 37, 80, 0.74);
+    color: whitesmoke;
+}
+
+.tab:link{
+    text-decoration: none;
 }
 
 .bio{
     color: rgba(150, 37, 80, 0.74);
     background-color: white;
-    border: 50px;
-    border-color: rgba(150, 36, 80, .74);
+    border: 15px;
+    border-color: rgba(150, 37, 80, .74);
+    /* margin: 20px; */
+    /* border-radius: 20px; */
 }
-
-/* .tab.extra{
-    background-color: black;
-} */
 
 .main-body{
     display: flex;
+}
+
+.main-body > div{
+    padding: 10px;
+}
+
+.parent-grid{
+    padding: 10px;
+    display: grid;
+    /* grid-template-columns: 1fr 1fr 1fr; */
+    grid-template-columns: repeat(auto-fit, minmax(200px, auto));
+    grid-gap: 5em;
+}
+
+.child-grid{
+    max-height: 315px;
+    max-width: 560px;
+    /* min-width: 100px;
+    min-height: 100px; */
+    border: 2px solid gray;
+}
+
+.project{
+    display: flex;
+    /* max-height: 100px; */
+}
+
+.project > div {
+    padding: 10px;
+}
+
+.img{
+    border: 2px solid gray;
+    width: 150px;
+    height: 150px;
+}
+
+.desc{
+    vertical-align: middle;
+    /* text-align: center; */
 }
