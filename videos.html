@@ -13,22 +13,22 @@
 
 </head>
 
-<body onload="activeTab('.videos')">
+<body onload="tabShow('.videos')">
     <button id="scrollBtn" onclick="topFunction()" title="Go to top">Go to Top</button>
     <div class=header>
         <h1>Videos</h1>
     </div>
     <div class="nav-bar">
-        <div class="tab">
+        <div class="tab home">
             <a style="text-decoration: none;" href="./index.html">Home</a>
         </div>
-        <div class="tab">
+        <div class="tab images">
             <a style="text-decoration: none;" href="./images.html">Images</a>
         </div>
-        <div class="tab">
+        <div class="tab videos">
             <a style="text-decoration: none;" href="./videos.html">Videos</a>
         </div>
-        <div class="tab">
+        <div class="tab projects">
             <a style="text-decoration: none;" href="./projects.html">Projects</a>
         </div> 
         <div class="tab">
@@ -59,26 +59,26 @@
         </video> -->
     </div>
     <script type="text/javascript">
-        var lightbox = document.createElement('div');
-        lightbox.id = "lightbox";
-        document.body.appendChild(lightbox);
+        var modal = document.createElement('div');
+        modal.id = "modal";
+        document.body.appendChild(modal);
 
         var vids = document.querySelectorAll("video");
         vids.forEach(vid =>{
             image.addEventListener("click", e=>{
-                lightbox.className = "active";
+                modal.className = "active";
                 const img = document.createElement('video');
                 img.src = image.src;
-                while(lightbox.firstChild){
-                    lightbox.removeChild(lightbox.firstChild);
+                while(modal.firstChild){
+                    modal.removeChild(modal.firstChild);
                 }
-                lightbox.appendChild(img);
+                modal.appendChild(img);
             });
         })
-        lightbox.addEventListener("click", e=>{
+        modal.addEventListener("click", e=>{
             if(e.target != e.currentTarget)
                 return;
-            lightbox.classList.remove("active");
+            modal.classList.remove("active");
         })	
 </script>
 </body>

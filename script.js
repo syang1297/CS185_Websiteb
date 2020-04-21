@@ -1,8 +1,7 @@
-var scrollTopBtn = document.getElementById("#scrollBtn");
 window.onscroll = function(){scrollToTop()};
 
-
 function scrollToTop(){
+    var scrollTopBtn = document.getElementById("#scrollBtn");
     console.log(scrollTopBtn);
     var scrollPos = document.body.scrollTop || document.documentElement.scrollTop;
     if(scrollPos > .25){

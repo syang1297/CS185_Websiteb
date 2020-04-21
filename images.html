@@ -11,22 +11,22 @@
     <link rel="shortcut icon" type="image/x-icon" href="src/tabIcon.jpg">
 </head>
 
-<body onload="activeTab('.images')">
+<body onload="tabShow('.images')">
     <div class="header">
         <h1>Images</h1>
     </div>
     <button id="scrollBtn" onclick="topFunction()" title="Go to top">Go to Top</button>
     <div class="nav-bar">
-        <div class="tab">
+        <div class="tab home">
             <a style="text-decoration: none;" href="./index.html">Home</a>
         </div>
-        <div class="tab">
+        <div class="tab images">
             <a style="text-decoration: none;" href="./images.html">Images</a>
         </div>
-        <div class="tab">
+        <div class="tab videos">
             <a style="text-decoration: none;" href="./videos.html">Videos</a>
         </div>
-        <div class="tab">
+        <div class="tab projects">
             <a style="text-decoration: none;" href="./projects.html">Projects</a>
         </div> 
         <div class="tab">
@@ -51,26 +51,26 @@
         <img class="child-grid" src="src/gnocchi.jpg">
     </div>
     <script type="text/javascript">
-        const lightbox = document.createElement('div');
-        lightbox.id = "lightbox";
-        document.body.appendChild(lightbox);
+        const box = document.createElement('div');
+        box.id = "modal";
+        document.body.appendChild(box);
 
         const images = document.querySelectorAll("img");
         images.forEach(image =>{
             image.addEventListener("click", e=>{
-                lightbox.className = "active";
+                box.className = "active";
                 const img = document.createElement('img');
                 img.src = image.src;
-                while(lightbox.firstChild){
-                    lightbox.removeChild(lightbox.firstChild);
+                while(box.firstChild){
+                    box.removeChild(box.firstChild);
                 }
-                lightbox.appendChild(img);
+                box.appendChild(img);
             });
         })
-        lightbox.addEventListener("click", e=>{
+        box.addEventListener("click", e=>{
             if(e.target != e.currentTarget)
                 return;
-            lightbox.classList.remove("active");
+            box.classList.remove("active");
         })	
 </script>
 </body>
