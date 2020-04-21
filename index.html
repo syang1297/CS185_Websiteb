@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <link rel="stylesheet" type="text/css" href="style.css">
+<script type="text/javascript" src="script.js"></script>
+<script src="https://ajax.google.com/ajax/libs/jquery/3.4.1/jquery.min.js"> </script>
 
 <title>Shu Yang </title>
 <link rel="shortcut icon" type="image/x-icon" href="src/tabIcon.jpg">
+
 
 <head>
     <div class=header>
@@ -10,7 +13,8 @@
     </div>
 </head>
 
-<body>
+<body onload="activeTab('.home')">
+    <button onclick="topFunction()" id="scrollBtn" title="Go to top">Go to Top</button>
     <div class="nav-bar">
         <div class="tab">
             <a style="text-decoration: none;" href="./index.html">Home</a>
