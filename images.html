@@ -58,8 +58,8 @@
         const images = document.querySelectorAll("img");
         images.forEach(image =>{
             image.addEventListener("click", e=>{
-                box.className = "active";
                 const img = document.createElement('img');
+                box.className = "active";
                 img.src = image.src;
                 while(box.firstChild){
                     box.removeChild(box.firstChild);
