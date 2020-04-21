@@ -1,18 +1,23 @@
 <!DOCTYPE html>
 <link rel="stylesheet" type="text/css" href="style.css">
-<script type="text/javascript" src="script.js"></script>
+<!-- <script type="text/javascript" src="script.js"></script> -->
+<script defer src="script.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 
 <title>Shu Yang </title>
 <link rel="shortcut icon" type="image/x-icon" href="src/tabIcon.jpg">
 
 <head>
+
+</head>
+
+<body onload="activeTab('.videos')">
+    <button id="scrollBtn" onclick="topFunction()" title="Go to top">Go to Top</button>
     <div class=header>
         <h1>Videos</h1>
     </div>
-</head>
-
-<body>
     <div class="nav-bar">
         <div class="tab">
             <a style="text-decoration: none;" href="./index.html">Home</a>
@@ -39,9 +44,9 @@
         picture-in-picture" allowfullscreen></iframe>
         <video class="child-grid"  controls>
             <source src="src/hk.mp4" type="video/mp4">
-            <source src="src/bigbera.mp4.mp4" type="video/mp4">
+            <!-- <source src="src/bigbera.mp4.mp4" type="video/mp4">
             <source src="src/macau.mp4.mp4" type="video/mp4">
-            <source src="src/macau.mp4.mp4" type="video/mp4">
+            <source src="src/macau.mp4.mp4" type="video/mp4"> -->
         </video>
         <!-- <video class="child-grid"  controls>
             <source src="src/bigbera.mp4.mp4" type="video/mp4">
@@ -53,6 +58,29 @@
             <source src="src/macau.mp4.mp4" type="video/mp4">
         </video> -->
     </div>
+    <script type="text/javascript">
+        var lightbox = document.createElement('div');
+        lightbox.id = "lightbox";
+        document.body.appendChild(lightbox);
+
+        var vids = document.querySelectorAll("video");
+        vids.forEach(vid =>{
+            image.addEventListener("click", e=>{
+                lightbox.className = "active";
+                const img = document.createElement('video');
+                img.src = image.src;
+                while(lightbox.firstChild){
+                    lightbox.removeChild(lightbox.firstChild);
+                }
+                lightbox.appendChild(img);
+            });
+        })
+        lightbox.addEventListener("click", e=>{
+            if(e.target != e.currentTarget)
+                return;
+            lightbox.classList.remove("active");
+        })	
+</script>
 </body>
 
 </html>

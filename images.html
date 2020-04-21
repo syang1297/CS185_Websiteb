@@ -1,20 +1,21 @@
 <!DOCTYPE html>
 <link rel="stylesheet" type="text/css" href="style.css">
-<script type="text/javascript" src="script.js"></script>
+<!-- <script type="text/javascript" src="script.js"></script> -->
 <script src="script.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-<title>Shu Yang </title>
-<link rel="shortcut icon" type="image/x-icon" href="src/tabIcon.jpg">
+
 
 <head>
-    <div class="header">
-        <h1>Images</h1>
-    </div>
+    <title>Shu Yang </title>
+    <link rel="shortcut icon" type="image/x-icon" href="src/tabIcon.jpg">
 </head>
 
 <body onload="activeTab('.images')">
-    <button onclick="topFunction()" id="scrollBtn" title="Go to top">Go to Top</button>
+    <div class="header">
+        <h1>Images</h1>
+    </div>
+    <button id="scrollBtn" onclick="topFunction()" title="Go to top">Go to Top</button>
     <div class="nav-bar">
         <div class="tab">
             <a style="text-decoration: none;" href="./index.html">Home</a>
@@ -49,6 +50,29 @@
         <img class="child-grid" src="src/pizza.jpg">
         <img class="child-grid" src="src/gnocchi.jpg">
     </div>
+    <script type="text/javascript">
+        const lightbox = document.createElement('div');
+        lightbox.id = "lightbox";
+        document.body.appendChild(lightbox);
+
+        const images = document.querySelectorAll("img");
+        images.forEach(image =>{
+            image.addEventListener("click", e=>{
+                lightbox.className = "active";
+                const img = document.createElement('img');
+                img.src = image.src;
+                while(lightbox.firstChild){
+                    lightbox.removeChild(lightbox.firstChild);
+                }
+                lightbox.appendChild(img);
+            });
+        })
+        lightbox.addEventListener("click", e=>{
+            if(e.target != e.currentTarget)
+                return;
+            lightbox.classList.remove("active");
+        })	
+</script>
 </body>
 
 </html>
