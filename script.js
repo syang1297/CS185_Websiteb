@@ -16,7 +16,7 @@ function topFunction() {
     document.documentElement.scrollTop = 0; 
 }
 
-function activeTab(tab){
+function tabShow(tab){
     var active = document.querySelector(tab);
     console.log(tab);
     active.style.background = "rgba(150, 37, 80, 0.377)";
