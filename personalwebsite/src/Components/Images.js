@@ -1,4 +1,10 @@
 import React, {Component} from 'react';
+import "../App.css";
+// import Grid from '@material-ui/core/Grid';
+// import { Grid } from '@material-ui/core';
+
+
+// import ImageGrid from "./ImageGrid.js";
 
 export class Images extends Component{
   render(){
