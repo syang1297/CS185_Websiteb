@@ -1,0 +1,39 @@
+{
+  "files": {
+    "main.css": "/CS185_Website/static/css/main.e6f4c1d0.chunk.css",
+    "main.js": "/CS185_Website/static/js/main.958a6f17.chunk.js",
+    "main.js.map": "/CS185_Website/static/js/main.958a6f17.chunk.js.map",
+    "runtime-main.js": "/CS185_Website/static/js/runtime-main.b857e590.js",
+    "runtime-main.js.map": "/CS185_Website/static/js/runtime-main.b857e590.js.map",
+    "static/js/2.4cbcb1b0.chunk.js": "/CS185_Website/static/js/2.4cbcb1b0.chunk.js",
+    "static/js/2.4cbcb1b0.chunk.js.map": "/CS185_Website/static/js/2.4cbcb1b0.chunk.js.map",
+    "index.html": "/CS185_Website/index.html",
+    "precache-manifest.82d5189d16998af2b6ac9410546581c2.js": "/CS185_Website/precache-manifest.82d5189d16998af2b6ac9410546581c2.js",
+    "service-worker.js": "/CS185_Website/service-worker.js",
+    "static/css/main.e6f4c1d0.chunk.css.map": "/CS185_Website/static/css/main.e6f4c1d0.chunk.css.map",
+    "static/js/2.4cbcb1b0.chunk.js.LICENSE.txt": "/CS185_Website/static/js/2.4cbcb1b0.chunk.js.LICENSE.txt",
+    "static/media/aos.jpg": "/CS185_Website/static/media/aos.2db8b5bd.jpg",
+    "static/media/bankTeller.jpeg": "/CS185_Website/static/media/bankTeller.90e3ab05.jpeg",
+    "static/media/bao.jpg": "/CS185_Website/static/media/bao.99c17dc0.jpg",
+    "static/media/bbq.jpg": "/CS185_Website/static/media/bbq.3f7b71af.jpg",
+    "static/media/birite.jpg": "/CS185_Website/static/media/birite.a8d9a9cb.jpg",
+    "static/media/dangho.jpg": "/CS185_Website/static/media/dangho.ad421492.jpg",
+    "static/media/gnocchi.jpg": "/CS185_Website/static/media/gnocchi.96cb5131.jpg",
+    "static/media/halal.jpg": "/CS185_Website/static/media/halal.f5600617.jpg",
+    "static/media/hk.mp4": "/CS185_Website/static/media/hk.95050005.mp4",
+    "static/media/lihing.jpg": "/CS185_Website/static/media/lihing.3a76cf86.jpg",
+    "static/media/App.css": "/CS185_Website/static/media/ocean.41933284.gif",
+    "static/media/os.jpeg": "/CS185_Website/static/media/os.3a0d1962.jpeg",
+    "static/media/pizza.jpg": "/CS185_Website/static/media/pizza.e7173bda.jpg",
+    "static/media/poki.jpg": "/CS185_Website/static/media/poki.1afb1421.jpg",
+    "static/media/ramen.jpg": "/CS185_Website/static/media/ramen.45b509bb.jpg",
+    "static/media/sushi.jpg": "/CS185_Website/static/media/sushi.95ca44b4.jpg",
+    "static/media/tacos.jpg": "/CS185_Website/static/media/tacos.c5f6e190.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.b857e590.js",
+    "static/js/2.4cbcb1b0.chunk.js",
+    "static/css/main.e6f4c1d0.chunk.css",
+    "static/js/main.958a6f17.chunk.js"
+  ]
+}
