@@ -1,5 +1,8 @@
 import React, {Component} from 'react';
 import "../App.css";
+import SimpleReactLightbox from 'simple-react-lightbox';
+import { SRLWrapper } from "simple-react-lightbox"; // Import SRLWrapper
+// import ScrollBtn from './ScrollBtn';
 // import Grid from '@material-ui/core/Grid';
 // import { Grid } from '@material-ui/core';
 
@@ -10,6 +13,9 @@ export class Images extends Component{
   render(){
     return (
         <div className="parent-grid">
+            {/* <ScrollBtn/> */}
+            <SimpleReactLightbox>
+            <SRLWrapper>
             <img className="child-grid" alt="food" src={require("../Images/sushi.jpg")}></img>
             <img className="child-grid" alt="food" src={require("../Images/dangho.jpg")}></img>
             <img className="child-grid" alt="food" src={require("../Images/lihing.jpg")}></img>
@@ -22,6 +28,8 @@ export class Images extends Component{
             <img className="child-grid" alt="food" src={require("../Images/bbq.jpg")}></img>
             <img className="child-grid" alt="food" src={require("../Images/pizza.jpg")}></img>
             <img className="child-grid" alt="food" src={require("../Images/gnocchi.jpg")}></img>
+            </SRLWrapper>
+            </SimpleReactLightbox>
         </div>
     );
   }

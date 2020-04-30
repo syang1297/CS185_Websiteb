@@ -9,11 +9,23 @@ export class Tab extends Component{
             return {backgroundColor: 'rgba(150, 37, 80, 0.74)'}
         }
     }
+    highlight = (e) => {
+        e.target.style.backgroundColor= 'rgba(150, 37, 80, 0.377)';
+    }
+
+    unHighlight = (e) => {
+        if(this.props.tab.id !== this.props.activeTab){
+            e.target.style.backgroundColor= 'rgba(150, 37, 80, 0.74)';
+        }
+    }
+    
     render(){
       return (
         <div className='tab' 
         style={this.addStyling()}
-        onClick={this.props.changeTab.bind(this, this.props.tab.id)}>
+        onClick={this.props.changeTab.bind(this, this.props.tab.id)}
+        onMouseEnter={this.highlight}
+        onMouseLeave={this.unHighlight}>
             <h4>{this.props.tab.title}</h4>
         </div>
       );

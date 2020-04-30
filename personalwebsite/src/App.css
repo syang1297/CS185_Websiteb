@@ -23,9 +23,9 @@
   color: whitesmoke;
 }
 
-.tab:hover{
+/* .tab:hover{
   background-color: rgba(150, 37, 80, 0.377);
-}
+} */
 
 .tab:link{
   text-decoration: none;
@@ -61,8 +61,8 @@
   max-width: 500px;
   min-width: 50px;
   min-height: 100px;
-  border: 2px solid gray;
-  padding: 5px;
+  border: 2px white;
+  padding: 10px;
 }
 
 .project{
@@ -101,16 +101,15 @@
   justify-content: center;
   align-items: center;
 }
-
-#scrollBtn{
+.scrollBtn{
   position: fixed;
   bottom: 20px;
   right: 30px;
   background-color: rgba(150, 37, 80, 0.377);
-  color: white;
+  /* color: white; */
   border-radius: 10px;
   font-size: 14px;
-/* opacity: 0; */
+  opacity: 1;
 }
 
 #scrollBtn.visible{

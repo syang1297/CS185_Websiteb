@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Tablist from './Components/Tablist';
 import Body from './Components/Body';
 import Header from './Components/Header';
+import ScrollUpButton from 'react-scroll-up-button';
 import './App.css';
 
 export class App extends Component{
@@ -40,6 +41,9 @@ export class App extends Component{
       <div>
         <Header activeTab={this.state.activeTab}/>
       <div className="body">
+        <ScrollUpButton
+        StopPosition={0}
+        ShowAtPosition={window.innerHeight/4}/>
         <div className="nav-bar">
           <Tablist tabs={tabs} 
           changeTab={this.changeTab}
