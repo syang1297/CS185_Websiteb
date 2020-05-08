@@ -11,7 +11,9 @@ export class Header extends Component{
             return "Videos"
         } else if (activeTab === 4){
             return "Projects"
-        } else{
+        } else if (activeTab === 5){
+            return "GuestBook"
+        }else{
             return "Page Not Found"
         }
     }

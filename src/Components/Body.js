@@ -3,6 +3,7 @@ import Home from './Home.js';
 import Images from './Images.js';
 import Videos from './Videos.js';
 import Projects from './Projects.js';
+import GuestBook from './GuestBook.js';
 import Err from './Err.js';
 // import ScrollBtn from './ScrollBtn.js';
 // import ScrollBtn from './ScrollBtn.js';
@@ -18,6 +19,8 @@ export class Body extends Component{
       return <Videos/>
     }else if (activeTab === 4){
       return <Projects/>
+    }else if (activeTab === 5){
+      return <GuestBook/>
     }else{
       return <Err/>
     }
