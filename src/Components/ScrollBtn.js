@@ -15,9 +15,6 @@ export class ScrollBtn extends Component{
       }
 
     makeVisible = () =>{
-        // console.log(window.pageYOffset)
-        // console.log(window.innerHeight/4)
-        // console.log(this)
         if(window.pageYOffset > window.innerHeight/4){
             this.setState.visible = true;
             console.log("set visible = true");

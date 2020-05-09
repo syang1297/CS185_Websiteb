@@ -33,16 +33,29 @@ export class GuestBook extends Component{
 
     render(){
     return (
-      <div>
-        <h2>GuestBook</h2>
+      <div className="guestContainer">
+          <div className="guestForm">
+              <form>
+                  <input type="text" name="name" placeholder="What is your name?"/>
+                  <input type="text" name="description" placeholder="What is your description?"/>
+                  <input type="text" name="message" placeholder="What is your message?"/>
+                    {/* missing show message */}
+                  <input type="text" name="email" placeholder="What is your email?"/>
+
+              </form>
+          </div>
+          <div className="guestMessages">
+
+          </div>
+        {/* <h2>GuestBook</h2>
         <div>GuesBook page</div>
         {/* trying to test firebase rn */}
-        <p>{this.state.data}</p>
+        {/* <p>{this.state.data}</p>
         {sample.map((s, index) => (
             <p>
                 {s}
             </p>
-        ))}
+        ))} */} 
       </div>
     );
   }
