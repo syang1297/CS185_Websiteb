@@ -12,7 +12,7 @@ export class Header extends Component{
         } else if (activeTab === 4){
             return "Projects"
         } else if (activeTab === 5){
-            return "GuestBook"
+            return "Guest Book"
         }else{
             return "Page Not Found"
         }

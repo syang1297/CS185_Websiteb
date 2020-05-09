@@ -20,7 +20,7 @@ export class App extends Component{
   }
   
   componentDidMount() {
-    document.title = "Shu Yang";
+    document.title = "Shu's Website";
   }
 
   render(){

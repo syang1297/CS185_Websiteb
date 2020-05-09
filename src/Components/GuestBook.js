@@ -47,11 +47,11 @@ export class GuestBook extends Component{
                     <div>What is your desription?</div>
                         <input type="text" name="description" placeholder="ex: a friend"/>
                     <div>What is your message?</div>
-                        <input type="text" name="message" placeholder="ex: Hello! Lovely website!"/>
+                        <textarea type="paragraph_text" cols="50" rows="10" name="message" placeholder="ex: Love the new website"/>
                             {/* missing show message */}
                             {/* missing time */}
                     <div>What is your email?</div>
-                        <input type="text" name="email" placeholder="ex:johnsmith@email.com"/>
+                        <input type="text" name="email" placeholder="ex: johnsmith@email.com"/>
                     <button className="submitBtn">Submit Message</button>
                     {/* </form> */}
                 </div>

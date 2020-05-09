@@ -170,7 +170,7 @@
 
 .guestForm > input {
   padding: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   /* margin-left: 10px; */
 }
 
@@ -188,7 +188,15 @@
   border: 2px solid rgba(150, 37, 80, 0.377)
 }
 
+.messageInput{
+  height: 100px;
+  padding: 0px;
+}
+
 .submitBtn{
   background-color: rgba(150, 37, 80, .74);
-  
+  padding: 10px;
+  font-weight: bold;
+  color: white;
+  border-radius: 10px;
 }
