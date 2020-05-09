@@ -19,6 +19,9 @@ export class App extends Component{
     }
   }
   
+  componentDidMount() {
+    document.title = "Shu Yang";
+  }
 
   render(){
     const tabs = [

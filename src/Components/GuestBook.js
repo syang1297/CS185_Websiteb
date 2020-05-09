@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import Config from '../Config.js';
 
 const firebase = require('firebase')
-
+const sample = ["hi", "hello", "how are you?"]
 
 export class GuestBook extends Component{ 
     constructor(){
@@ -10,6 +10,7 @@ export class GuestBook extends Component{
         this.state = {
             data: [],
             shouldRender: true
+            // sample: 
         }
     }
     componentDidMount(){
@@ -37,6 +38,11 @@ export class GuestBook extends Component{
         <div>GuesBook page</div>
         {/* trying to test firebase rn */}
         <p>{this.state.data}</p>
+        {sample.map((s, index) => (
+            <p>
+                {s}
+            </p>
+        ))}
       </div>
     );
   }
