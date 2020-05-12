@@ -21,7 +21,10 @@ export class Body extends Component{
       return <Projects/>
     }else if (activeTab === 5){
       return <GuestBook/>
-    }else{
+    }else if (activeTab === 6){
+      return <Movies/>
+    }
+    else{
       return <Err/>
     }
   }

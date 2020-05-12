@@ -40,5 +40,8 @@
       "last 1 safari version"
     ]
   },
-  "homepage": "https://syang1297.github.io/CS185_Website"
+  "homepage": "https://syang1297.github.io/CS185_Website",
+  "devDependencies": {
+    "gh-pages": "^2.2.0"
+  }
 }

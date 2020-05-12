@@ -10,14 +10,10 @@
 .nav-bar{
   display: flex;
   position: sticky;
-  /* width: 100%; */
-  /* color: black; */
 }
 
 .nav-bar > div {
   padding: 10px;
-  /* padding-left: 106px; */
-  /* padding-right: 106px;  */
 }
 
 .tab{
@@ -25,10 +21,6 @@
   background-color: rgba(150, 37, 80, 0.74);
   color: whitesmoke;
 }
-
-/* .tab:hover{
-  background-color: rgba(150, 37, 80, 0.377);
-} */
 
 .tab:link{
   text-decoration: none;
@@ -54,8 +46,6 @@
 /* Grid */
 .parent-grid{
   padding: 10px;
-  /* display: grid; */
-  /* grid-template-columns: 1fr 1fr 1fr; */
   grid-template-columns: repeat(auto-fit, minmax(200px, auto));
   grid-gap: 5em;
 }
@@ -72,7 +62,6 @@
 /* Project Page */
 .project{
   display: flex;
-  /* max-height: 100px; */
 }
 
 .project > div {
@@ -108,25 +97,6 @@
   align-items: center;
 }
 
-/* Scroll Button */
-.scrollBtn{
-  position: fixed;
-  bottom: 20px;
-  right: 30px;
-  background-color: rgba(150, 37, 80, 0.377);
-  /* color: white; */
-  border-radius: 10px;
-  font-size: 14px;
-  opacity: 1;
-}
-
-#scrollBtn.visible{
-  opacity: 1;
-}
-
-#scrollBtn:hover{
-  background-color: rgba(22, 73, 12, 0.644);
-}
 
 /* GuestBook */
 .guestTitle{
@@ -140,27 +110,15 @@
 
 .guestContainer{
   display: flex;
-  /* grid-template-columns: repeat(auto-fit, minmax(200px, auto));
-  grid-gap: 5em; */
-  /* padding: 100px; */
-
 }
 
 .guestContainer > div {
   padding-left: 15px;
-  /* padding-right: 100px; */
 }
 
 .guestForm{
   border-radius: 25px;
-  /* max-width: 400px;
-  max-height: 400px; */
   border: 2px solid rgba(150, 37, 80, 0.377);
-  /* max-height: 315px;
-  max-width: 250px;
-  min-width: 50px;
-  min-height: 100px; */
-  /* padding-right: 25px; */
   height: 100%;
   width: 100%;
   display: flex;
@@ -171,7 +129,6 @@
 .guestForm > input {
   padding: 10px;
   margin-bottom: 20px;
-  /* margin-left: 10px; */
 }
 
 .guestForm > textarea {
@@ -180,24 +137,17 @@
 }
 
 .guestMessages{
-  /* padding-left: 25px; */
   margin-left: 50px;
   border-radius: 25px;
-  /* min-width: 400px;
-  min-height: 400px; */
   max-height: 85vh;
-  /* max-width: 500px; */
   min-width: 300px;
   min-height: 100px;
-  /* height: 100%; */
   border: 2px solid rgba(150, 37, 80, 0.377);
   overflow: auto;
-  /* display: flex; */
   align-content: left;
 }
 
 .message{
-  /* display: flex; */
   padding: 5px;
   margin-top: 10px;
   border-top: 1px solid rgba(37, 37, 37, .77);
@@ -207,12 +157,8 @@
 .messageHeader{
   display: flex;
 }
-.message > div {
-  /* padding: 10px; */
-}
 
 .messageName{
-  /* text-emphasis: filled sesame rgba(131, 26, 87, 0.897); */
   text-decoration: underline;
   font-weight: bold;
   color: rgba(131, 26, 87, .89);
@@ -233,10 +179,6 @@
   height: 100px;
   padding: 0px;
 }
-
-/* .messageMessage{
-  padding-left: 5px;
-} */
 
 .submitBtn{
   background-color: rgba(150, 37, 80, .74);
