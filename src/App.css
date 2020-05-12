@@ -185,23 +185,21 @@
   border-radius: 25px;
   /* min-width: 400px;
   min-height: 400px; */
-  max-height: 315px;
-  max-width: 500px;
+  max-height: 85vh;
+  /* max-width: 500px; */
   min-width: 300px;
-  min-height: 500px;
+  min-height: 100px;
   /* height: 100%; */
   border: 2px solid rgba(150, 37, 80, 0.377);
   overflow: auto;
-  display: flex;
+  /* display: flex; */
   align-content: left;
 }
 
-
-
 .message{
   /* display: flex; */
-  padding: 2px;
-  margin-top: 5px;
+  padding: 5px;
+  margin-top: 10px;
   border-top: 1px solid rgba(37, 37, 37, .77);
   /* border-bottom: 1px solid rgba(37, 37, 37, .77); */
 }

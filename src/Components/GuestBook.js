@@ -9,6 +9,7 @@ import Switch from "react-switch";
 
 const firebase = require('firebase')
 const sample = ["hi", "hello", "how are you?"]
+var scrnHeight = screen.height;
 
 export class GuestBook extends Component{ 
     constructor(){
@@ -19,7 +20,7 @@ export class GuestBook extends Component{
             name: '',
             description: '',
             message: '',
-            dropdown: '',
+            dropdown: 'No',
             email: '',
             time: ''
             // sample: 
@@ -91,7 +92,16 @@ export class GuestBook extends Component{
             alert('Please fill out missing dropdown information');
             return;
             // sub = 0;
+        }
 
+        if(this.state.name.length < 5){
+            alert('Name needs to be at least 5 characters long');
+            return;
+        }
+
+        if(this.state.message.length < 15){
+            alert('Message needs to be at least 15 characters long');
+            return;
         }
         // if(sub == 1){
             const ref = firebase.database().ref('data');
@@ -108,7 +118,7 @@ export class GuestBook extends Component{
                 name: '',
                 description: '',
                 message: '',
-                dropdown:'',
+                dropdown:'No',
                 email: '',
                 time: ''
             });
@@ -127,7 +137,7 @@ export class GuestBook extends Component{
                 <div className="guestForm">
                     {/* <form className="guestForm"> */}
                     <div>What is your name?</div>
-                        <input type="text" name="name" minLength="5" maxLength="20" placeholder="ex: John Smith" onChange={this.handleChange} value={this.state.name}/>
+                        <input type="text" name="name" minLength="5" maxLength="20" pattern="{.5, 20}" placeholder="ex: John Smith" onChange={this.handleChange} value={this.state.name}/>
                     <div>What is your description?</div>
                         <input type="text" name="description" maxLength="100" placeholder="ex: a friend" onChange={this.handleChange} value={this.state.description}/>
                     <div>What is your message?</div>
