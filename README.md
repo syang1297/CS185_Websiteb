@@ -1,7 +1,6 @@
 Website hosted at:
 
-https://github.io.syang1297/CS185_Website
-
+https://syang1297.github.io/CS185_Website/
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
