@@ -9,11 +9,14 @@ export class Header extends Component{
             return "Images"
         }else if (activeTab === 3){
             return "Videos"
-        } else if (activeTab === 4){
+        }else if (activeTab === 4){
             return "Projects"
-        } else if (activeTab === 5){
+        }else if (activeTab === 5){
             return "Guest Book"
-        }else{
+        }else if (activeTab === 6){
+            return "Movies"
+        }
+        else{
             return "Page Not Found"
         }
     }
