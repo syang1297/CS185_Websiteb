@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 import Config from '../Config.js';
-import Switch from "react-switch";
+import { motion } from "framer-motion"
+
+
+// import Switch from "react-switch";
 // import Alert from '@material-ui/lab/Alert';
 
 
@@ -134,7 +137,7 @@ export class GuestBook extends Component{
         <div>
             <div className="guestTitle">Leave Me a Message!</div>   
             <div className="guestContainer">
-                <div className="guestForm">
+                <motion.div  animate={{rotate:360}} transition={{duration:2}} className="guestForm">
                     {/* <form className="guestForm"> */}
                     <div>What is your name?</div>
                         <input type="text" name="name" minLength="5" maxLength="20" pattern="{.5, 20}" placeholder="ex: John Smith" onChange={this.handleChange} value={this.state.name}/>
@@ -151,11 +154,16 @@ export class GuestBook extends Component{
                         <input type="text" name="email" placeholder="ex: johnsmith@email.com" onChange={this.handleChange} value={this.state.email}/>
                     <button className="submitBtn" onClick={this.handleSubmit}>Submit Message</button>
                     {/* </form> */}
-                </div>
-                <div className="guestMessages">
+                </motion.div>
+                <motion.div animate={{rotate:360}} transition={{duration:2}} className="guestMessages">
                           {this.state.data.map((msg) => {
                             return (
-                            <div className="message">
+                            <motion.div     animate={{
+                                scale: [1, 2, 2, 1, 1],
+                                rotate: [0, 160, 270, 360, 0],
+                              }}
+                            //   transition={{ duration: 2 }} 
+                              className="message">
                                 <div className="messageHeader">
                                     <div className="messageName">{msg.name}  </div>
                                     <div className="messageDescription">  --  {msg.description}</div>
@@ -164,11 +172,11 @@ export class GuestBook extends Component{
                                 {/* </div> */}
                                 <div className="messageTime">{msg.time}</div>
                                 <div className="messageMessage">{msg.message}</div>
-                            </div>
+                            </motion.div>
 
                             )
                         })}
-                </div>
+                </motion.div>
             </div>
         </div>
     );
