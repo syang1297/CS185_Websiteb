@@ -18,6 +18,11 @@ export class App extends Component{
       })
     }
   }
+  
+  componentDidMount() {
+    document.title = "Shu's Website";
+  }
+
   render(){
     const tabs = [
       {
@@ -35,6 +40,10 @@ export class App extends Component{
       {
         id: 4,
         title: "Projects"
+      },
+      {
+        id: 5,
+        title: "Guest Book"
       }
     ]
     return (

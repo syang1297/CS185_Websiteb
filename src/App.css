@@ -1,0 +1,247 @@
+.header{
+  font: helvetica;
+  text-align: center;
+  background-image: url("./Images/ocean.gif");
+  padding: 30px;
+  color: whitesmoke;
+  font-style: italic;
+}
+
+.nav-bar{
+  display: flex;
+  position: sticky;
+  /* width: 100%; */
+  /* color: black; */
+}
+
+.nav-bar > div {
+  padding: 10px;
+  /* padding-left: 106px; */
+  /* padding-right: 106px;  */
+}
+
+.tab{
+  text-decoration: none;
+  background-color: rgba(150, 37, 80, 0.74);
+  color: whitesmoke;
+}
+
+/* .tab:hover{
+  background-color: rgba(150, 37, 80, 0.377);
+} */
+
+.tab:link{
+  text-decoration: none;
+}
+
+.bio{
+  color: rgba(150, 37, 80, 0.74);
+  background-color: white;
+  border: 15px;
+  border-color: rgba(150, 37, 80, .74);
+  margin: 20px;
+  border-radius: 20px;
+}
+
+.main-body{
+  display: flex;
+}
+
+.main-body > div{
+  padding: 10px;
+}
+
+/* Grid */
+.parent-grid{
+  padding: 10px;
+  /* display: grid; */
+  /* grid-template-columns: 1fr 1fr 1fr; */
+  grid-template-columns: repeat(auto-fit, minmax(200px, auto));
+  grid-gap: 5em;
+}
+
+.child-grid{
+  max-height: 315px;
+  max-width: 500px;
+  min-width: 50px;
+  min-height: 100px;
+  border: 2px white;
+  padding: 10px;
+}
+
+/* Project Page */
+.project{
+  display: flex;
+  /* max-height: 100px; */
+}
+
+.project > div {
+  padding: 10px;
+}
+
+.img{
+  border: 2px solid gray;
+  width: 150px;
+  height: 150px;
+}
+
+.desc{
+  vertical-align: middle;
+  text-align: center;
+}
+
+
+/* LightBox */
+#modal {
+  position: fixed;
+  background: rgba(143, 31, 31);
+  z-index: 1000;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  margin: 0;
+  display: none;
+}
+#modal.active {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Scroll Button */
+.scrollBtn{
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  background-color: rgba(150, 37, 80, 0.377);
+  /* color: white; */
+  border-radius: 10px;
+  font-size: 14px;
+  opacity: 1;
+}
+
+#scrollBtn.visible{
+  opacity: 1;
+}
+
+#scrollBtn:hover{
+  background-color: rgba(22, 73, 12, 0.644);
+}
+
+/* GuestBook */
+.guestTitle{
+  width: 100%;
+  text-align: left;
+  font-style: Helvetica;
+  font-size: 20px;
+  color: rgba(175, 70, 110, 0.89);
+  padding: 20px;
+}
+
+.guestContainer{
+  display: flex;
+  /* grid-template-columns: repeat(auto-fit, minmax(200px, auto));
+  grid-gap: 5em; */
+  /* padding: 100px; */
+
+}
+
+.guestContainer > div {
+  padding-left: 15px;
+  /* padding-right: 100px; */
+}
+
+.guestForm{
+  border-radius: 25px;
+  /* max-width: 400px;
+  max-height: 400px; */
+  border: 2px solid rgba(150, 37, 80, 0.377);
+  /* max-height: 315px;
+  max-width: 250px;
+  min-width: 50px;
+  min-height: 100px; */
+  /* padding-right: 25px; */
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.guestForm > input {
+  padding: 10px;
+  margin-bottom: 20px;
+  /* margin-left: 10px; */
+}
+
+.guestForm > textarea {
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.guestMessages{
+  /* padding-left: 25px; */
+  margin-left: 50px;
+  border-radius: 25px;
+  /* min-width: 400px;
+  min-height: 400px; */
+  max-height: 85vh;
+  /* max-width: 500px; */
+  min-width: 300px;
+  min-height: 100px;
+  /* height: 100%; */
+  border: 2px solid rgba(150, 37, 80, 0.377);
+  overflow: auto;
+  /* display: flex; */
+  align-content: left;
+}
+
+.message{
+  /* display: flex; */
+  padding: 5px;
+  margin-top: 10px;
+  border-top: 1px solid rgba(37, 37, 37, .77);
+  /* border-bottom: 1px solid rgba(37, 37, 37, .77); */
+}
+
+.messageHeader{
+  display: flex;
+}
+.message > div {
+  /* padding: 10px; */
+}
+
+.messageName{
+  /* text-emphasis: filled sesame rgba(131, 26, 87, 0.897); */
+  text-decoration: underline;
+  font-weight: bold;
+  color: rgba(131, 26, 87, .89);
+  text-transform: uppercase;
+}
+
+.messageDescription{
+  font-style: italic;
+  color: rgb(37, 37, 37);
+}
+
+.messageTime{
+  font-style: italic;
+  color: rgba(37, 37, 37, .77)
+}
+
+.messageInput{
+  height: 100px;
+  padding: 0px;
+}
+
+/* .messageMessage{
+  padding-left: 5px;
+} */
+
+.submitBtn{
+  background-color: rgba(150, 37, 80, .74);
+  padding: 10px;
+  font-weight: bold;
+  color: white;
+  border-radius: 10px;
+}
