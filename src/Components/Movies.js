@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import {SRLWrapper} from "simple-react-lightbox";
+import SimpleReactLightbox from 'simple-react-lightbox';
 
 const axios = require('axios');
 
@@ -12,6 +14,27 @@ const movieID = [
     'tt0993846',
     'tt0120338'
 ];
+
+const options = {
+    settings: {
+        disableKeyboardControls: true,
+        disableWheelControls: true,
+    },
+    buttons:{
+        showAutoplayButton: false,
+        showFullscreenButton: false,
+        showNextButton: false,
+        showPrevButton: false,
+        showDownloadButton: false,
+    },
+    thumbnails:{
+        showThumbnails: false,
+    }
+};
+
+const callbacks = {
+    onLightboxOpened: object => console.log(object)
+};
 
 export class Movies extends Component{
     constructor(props){
@@ -28,14 +51,13 @@ export class Movies extends Component{
     }
 
     getRequest(id){
-        const id1 = 'http://www.omdbapi.com/?i=';
+        const id1 = 'https://www.omdbapi.com/?i=';
         const id2 = '&apikey=915b3e92'
         const idCurrent = id1 + id + id2;
         console.log("logging current get request");
         axios.get(idCurrent)
         .then(response =>{
             console.log("successful call to api");
-            // console.log(response)
             const movie = {
                 id,
                 img: response.data.Poster,
@@ -53,16 +75,32 @@ export class Movies extends Component{
         });
     }
 
+    dimPoster = (e) => {
+        e.target.style.filter= 'brightness(40%)';
+    }
+
+    unDimPoster = (e) => {
+        e.target.style.filter= 'brightness(100%)';
+    }
+
     render(){
         const Movies = this.state.movies && 
-        this.state.movies.map(({id, img, title}) => {
+        this.state.movies.map(({id, img, title, director, rating}) => {
             return(
-                <img className="child-grid" src={img} alt={id}></img>
+                <img className="child-grid" 
+                onMouseEnter={this.dimPoster} 
+                onMouseLeave={this.unDimPoster}
+                src={img} alt={title + ' | ' + director + ' | ' + rating}>
+                </img>
             )
         })
         const loaded = (
             <div className="parent-grid">
+                <SimpleReactLightbox>
+                <SRLWrapper options={options} callbacks={callbacks}>
                 {Movies}
+                </SRLWrapper>
+                </SimpleReactLightbox>
             </div>
         );
         const unloaded = (<p>Loading movies...</p>)

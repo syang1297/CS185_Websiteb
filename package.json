@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@babel/core": "^7.9.6",
     "@material-ui/lab": "^4.0.0-alpha.53",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
@@ -13,6 +12,7 @@
     "framer-motion": "^1.10.3",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-popupbox": "^2.0.8",
     "react-scripts": "3.4.1",
     "react-scroll-up-button": "^1.6.4",
     "react-switch": "^5.0.1",
@@ -43,6 +43,8 @@
   },
   "homepage": "https://syang1297.github.io/CS185_Website",
   "devDependencies": {
+    "@babel/core": "^7.9.6",
+    "@babel/preset-env": "^7.9.6",
     "gh-pages": "^2.2.0"
   }
 }

@@ -79,25 +79,6 @@
   text-align: center;
 }
 
-
-/* LightBox */
-#modal {
-  position: fixed;
-  background: rgba(143, 31, 31);
-  z-index: 1000;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  margin: 0;
-  display: none;
-}
-#modal.active {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-
 /* GuestBook */
 .guestTitle{
   width: 100%;
@@ -151,7 +132,6 @@
   padding: 5px;
   margin-top: 10px;
   border-top: 1px solid rgba(37, 37, 37, .77);
-  /* border-bottom: 1px solid rgba(37, 37, 37, .77); */
 }
 
 .messageHeader{
@@ -186,4 +166,8 @@
   font-weight: bold;
   color: white;
   border-radius: 10px;
+}
+
+.movieInfo{
+  display: flex;
 }
