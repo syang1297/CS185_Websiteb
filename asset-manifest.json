@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/CS185_Website/static/css/main.e2caa0ff.chunk.css",
-    "main.js": "/CS185_Website/static/js/main.c62c501a.chunk.js",
-    "main.js.map": "/CS185_Website/static/js/main.c62c501a.chunk.js.map",
-    "runtime-main.js": "/CS185_Website/static/js/runtime-main.b857e590.js",
-    "runtime-main.js.map": "/CS185_Website/static/js/runtime-main.b857e590.js.map",
-    "static/js/2.fbb565e6.chunk.js": "/CS185_Website/static/js/2.fbb565e6.chunk.js",
-    "static/js/2.fbb565e6.chunk.js.map": "/CS185_Website/static/js/2.fbb565e6.chunk.js.map",
+    "main.css": "/CS185_Website/static/css/main.2bcdf4da.chunk.css",
+    "main.js": "/CS185_Website/static/js/main.fa2c6bb2.chunk.js",
+    "main.js.map": "/CS185_Website/static/js/main.fa2c6bb2.chunk.js.map",
+    "runtime-main.js": "/CS185_Website/static/js/runtime-main.3f40dddd.js",
+    "runtime-main.js.map": "/CS185_Website/static/js/runtime-main.3f40dddd.js.map",
+    "static/js/2.a745fec4.chunk.js": "/CS185_Website/static/js/2.a745fec4.chunk.js",
+    "static/js/2.a745fec4.chunk.js.map": "/CS185_Website/static/js/2.a745fec4.chunk.js.map",
     "index.html": "/CS185_Website/index.html",
-    "precache-manifest.ac5f192a065a54df3d908ac4c67d39a8.js": "/CS185_Website/precache-manifest.ac5f192a065a54df3d908ac4c67d39a8.js",
+    "precache-manifest.bc9e715dec52decea7386ce1bfb90d44.js": "/CS185_Website/precache-manifest.bc9e715dec52decea7386ce1bfb90d44.js",
     "service-worker.js": "/CS185_Website/service-worker.js",
-    "static/css/main.e2caa0ff.chunk.css.map": "/CS185_Website/static/css/main.e2caa0ff.chunk.css.map",
-    "static/js/2.fbb565e6.chunk.js.LICENSE.txt": "/CS185_Website/static/js/2.fbb565e6.chunk.js.LICENSE.txt",
+    "static/css/main.2bcdf4da.chunk.css.map": "/CS185_Website/static/css/main.2bcdf4da.chunk.css.map",
+    "static/js/2.a745fec4.chunk.js.LICENSE.txt": "/CS185_Website/static/js/2.a745fec4.chunk.js.LICENSE.txt",
     "static/media/aos.jpg": "/CS185_Website/static/media/aos.2db8b5bd.jpg",
     "static/media/bankTeller.jpeg": "/CS185_Website/static/media/bankTeller.90e3ab05.jpeg",
     "static/media/bao.jpg": "/CS185_Website/static/media/bao.99c17dc0.jpg",
@@ -31,9 +31,9 @@
     "static/media/tacos.jpg": "/CS185_Website/static/media/tacos.c5f6e190.jpg"
   },
   "entrypoints": [
-    "static/js/runtime-main.b857e590.js",
-    "static/js/2.fbb565e6.chunk.js",
-    "static/css/main.e2caa0ff.chunk.css",
-    "static/js/main.c62c501a.chunk.js"
+    "static/js/runtime-main.3f40dddd.js",
+    "static/js/2.a745fec4.chunk.js",
+    "static/css/main.2bcdf4da.chunk.css",
+    "static/js/main.fa2c6bb2.chunk.js"
   ]
 }
