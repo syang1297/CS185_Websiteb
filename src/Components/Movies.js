@@ -43,13 +43,9 @@ export class Movies extends Component{
                 director: response.data.Director,
                 rating: response.data.imdbRating
             }
-            // console.log(movie)
             this.setState({movies: [...this.state.movies, movie]})
-            console.log("logging current state")
-            console.log(this.state.movies)
         })
         .catch(function(error){
-            // alert('Was unable to connect to the api')
             console.log("unsuccessful call to api")
         })
         .then(function(){
@@ -61,10 +57,7 @@ export class Movies extends Component{
         const Movies = this.state.movies && 
         this.state.movies.map(({id, img, title}) => {
             return(
-                <div key={id} className='child-grid'>
-                    <img src={img} alt={id}></img>
-                    <div>{title}</div>
-                </div>
+                <img className="child-grid" src={img} alt={id}></img>
             )
         })
         const loaded = (
