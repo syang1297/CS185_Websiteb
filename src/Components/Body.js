@@ -4,9 +4,9 @@ import Images from './Images.js';
 import Videos from './Videos.js';
 import Projects from './Projects.js';
 import GuestBook from './GuestBook.js';
+import Movies from './Movies.js';
 import Err from './Err.js';
-// import ScrollBtn from './ScrollBtn.js';
-// import ScrollBtn from './ScrollBtn.js';
+
 
 export class Body extends Component{
   displayContent = () => {
@@ -21,7 +21,10 @@ export class Body extends Component{
       return <Projects/>
     }else if (activeTab === 5){
       return <GuestBook/>
-    }else{
+    }else if (activeTab === 6){
+      return <Movies/>
+    }
+    else{
       return <Err/>
     }
   }
