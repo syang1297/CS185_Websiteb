@@ -1,10 +1,5 @@
 import React, {Component} from 'react';
 
-
-// h t tp : / /www. omdbapi . com/? api ke y =[ yourkey]& i=t t 0 1 6 7 2 6 1
-//request using api
-//https://www.ombdapi.com/?apikey=915b3e92&i=tt3896198
-// http://www.omdbapi.com/?i=tt3896198&apikey=915b3e92
 const axios = require('axios');
 
 const movieID = [
@@ -18,61 +13,43 @@ const movieID = [
     'tt0120338'
 ];
 
-var movies = [];
-
-// var testMovie = {
-//     img: '',
-//     title:'' ,
-//     director:'' ,
-//     rating: ''
-// };
-
 export class Movies extends Component{
-    componentDidMount(){
-        //COMMENTED OUT FOR NOW UNTIL GET REQUESTS ARE RIGHT
-        for(let id in movieID){
-            // console.log(id);
-            this.getRequest(movieID[id]);
+    constructor(props){
+        super(props);
+        this.state = {
+            movies: []
         }
-        console.log(movies);
-        // testMovie = axios.get('http://www.omdbapi.com/?i=tt3896198&apikey=915b3e92')
-        //     .then(function(response){
-        //         console.log("successful call to api");
-        //         console.log(response);
-        //         testMovie.title = response.data.Title;
-        //         testMovie.director = response.data.Director;
-        //         testMovie.rating = response.data.imdbRating;
-        //         console.log("logging testMovie");
-        //         console.log(testMovie);
-        //     })
-        //     .catch(function(error){
-        //         alert('Was unable to connect to the api')
-        //         console.log("unsuccessful call to api")
-        //     })
-        //     .then(function(){
-        //         //always executed
-        //     });
+    }
+    
+    componentDidMount(){
+        movieID.forEach(id => {
+            this.getRequest(id)
+        })
     }
 
     getRequest(id){
-        var id1 = 'http://www.omdbapi.com/?i=';
-        var id2 = '&apikey=915b3e92'
-        var idCurrent = id1 + id + id2;
+        const id1 = 'http://www.omdbapi.com/?i=';
+        const id2 = '&apikey=915b3e92'
+        const idCurrent = id1 + id + id2;
         console.log("logging current get request");
         axios.get(idCurrent)
-        .then(function(response){
+        .then(response =>{
             console.log("successful call to api");
             // console.log(response)
-            movies.push({
-                img: '',
+            const movie = {
+                id,
+                img: response.data.Poster,
                 title: response.data.Title,
                 director: response.data.Director,
                 rating: response.data.imdbRating
-            });
-            // console.log(movies);
+            }
+            // console.log(movie)
+            this.setState({movies: [...this.state.movies, movie]})
+            console.log("logging current state")
+            console.log(this.state.movies)
         })
         .catch(function(error){
-            alert('Was unable to connect to the api')
+            // alert('Was unable to connect to the api')
             console.log("unsuccessful call to api")
         })
         .then(function(){
@@ -81,22 +58,25 @@ export class Movies extends Component{
     }
 
     render(){
-    return( 
-        <div className="parent-grid">
-            HELLO WORLD
-        </div>
-    );
+        const Movies = this.state.movies && 
+        this.state.movies.map(({id, img, title}) => {
+            return(
+                <div key={id} className='child-grid'>
+                    <img src={img} alt={id}></img>
+                    <div>{title}</div>
+                </div>
+            )
+        })
+        const loaded = (
+            <div className="parent-grid">
+                {Movies}
+            </div>
+        );
+        const unloaded = (<p>Loading movies...</p>)
+
+        if(this.state.movies.length >= 8) return loaded
+        return unloaded
   }
 }
 
 export default Movies;
-
-//mapping for later
-// movies.map((movie) => {
-//     return(
-//         <div className="child-grid">
-//             {/* <img>{movie.img}</img> */}
-//             {testMovie}
-//         </div>
-//     )
-// })

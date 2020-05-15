@@ -1,0 +1,179 @@
+[33mcommit eb53c1dd61a6e4051e97a52027a9f8432e10f5cf[m[33m ([m[1;36mHEAD -> [m[1;32msecondary[m[33m, [m[1;31morigin/secondary[m[33m)[m
+Author: syang1297 <syang1297@gmail.com>
+Date:   Tue May 12 14:36:57 2020 -0700
+
+    changed header to say Movies
+
+[33mcommit 9b22c3aa7977565125fa28675e3ccfe6332c327d[m
+Author: syang1297 <syang1297@gmail.com>
+Date:   Tue May 12 03:18:56 2020 -0700
+
+    got api call to work, missing getting img, displaying on page, and lighbox
+
+[33mcommit 5ced9ccb6f4735c916fb5625c39984b9a82e05d8[m
+Author: syang1297 <syang1297@gmail.com>
+Date:   Tue May 12 02:20:57 2020 -0700
+
+    starting assignment 6
+
+[33mcommit 31a364c25ab118453ef6f73e93ca55084855bbe6[m
+Author: syang1297 <syang1297@gmail.com>
+Date:   Tue May 12 01:03:35 2020 -0700
+
+    Added animations to page
+
+[33mcommit 927b65378991f1f7f67e4cb2517ad14feb6e1209[m
+Author: syang1297 <syang1297@gmail.com>
+Date:   Tue May 12 00:21:26 2020 -0700
+
+    completed assignment basices... now going to try to add animations
+
+[33mcommit 6d5794a5d22953d4d3f2c0e7e614ef7c71135204[m
+Author: syang1297 <syang1297@gmail.com>
+Date:   Mon May 11 23:52:47 2020 -0700
+
+    got messages to write to db and show up, just need to test edge cases
+
+[33mcommit 37873a962e249753d0b32c6f5bb2a3a4cd7fcb53[m
+Author: syang1297 <syang1297@gmail.com>
+Date:   Fri May 8 18:33:02 2020 -0700
+
+    made character box for message... missing character limits, time-stamp, and y/n for showing message
+
+[33mcommit 1623f76f0fc2e3f40b44686a8dae892d03a083af[m
+Author: syang1297 <syang1297@gmail.com>
+Date:   Fri May 8 18:24:38 2020 -0700
+
+    finished basic UI of form
+
+[33mcommit 42bc54a29d0bf4291194ea64ae2f961dba6d7f19[m
+Author: syang1297 <syang1297@gmail.com>
+Date:   Fri May 8 17:32:16 2020 -0700
+
+    working on building UI of guestbook
+
+[33mcommit 82d88b4c8d373867381865e6dfa4908269172189[m
+Author: syang1297 <syang1297@gmail.com>
+Date:   Fri May 8 17:18:50 2020 -0700
+
+    did test mapping function and updated custom tab name/icon
+
+[33mcommit 9aed59a0424c856f50e034ee5788ca57d280f8bc[m
+Author: syang1297 <syang1297@gmail.com>
+Date:   Fri May 8 17:03:52 2020 -0700
+
+    got to read from database on time
+
+[33mcommit e461d3a98010e5d94930d62c98a93241e5c9cf07[m
+Author: syang1297 <syang1297@gmail.com>
+Date:   Fri May 8 16:13:25 2020 -0700
+
+    added guestbook tab
+
+[33mcommit 2c3fe1fd82956da2102687555727b0c9336060a4[m
+Author: syang1297 <syang1297@gmail.com>
+Date:   Tue May 5 17:02:56 2020 -0700
+
+    removed extranneous copy of webiste
+
+[33mcommit 86218140c502e599c28ee93ea7f05d2e1f6d78f9[m
+Author: syang1297 <syang1297@gmail.com>
+Date:   Tue May 5 17:00:05 2020 -0700
+
+    removed previous non-react website
+
+[33mcommit 0c49bed372b4a4ce5d981ac5f7d03f85d71a63a6[m
+Author: syang1297 <syang1297@gmail.com>
+Date:   Thu Apr 30 00:33:29 2020 -0700
+
+    blah
+
+[33mcommit 37b367d8132647ed79f059c7b4298c7f3b00a0b9[m
+Author: syang1297 <syang1297@gmail.com>
+Date:   Wed Apr 29 23:49:43 2020 -0700
+
+    finished assignment 4
+
+[33mcommit 6f87e6f8882b079f9001aaeb52b566c43610975e[m
+Author: syang1297 <syang1297@gmail.com>
+Date:   Wed Apr 29 23:43:34 2020 -0700
+
+    checking scroll and lightbox
+
+[33mcommit 1236ed95353eb74e6c605237e7a763e4ada84ba2[m
+Author: syang1297 <syang1297@gmail.com>
+Date:   Wed Apr 29 20:49:10 2020 -0700
+
+    finished photo grid
+
+[33mcommit e3e3327768c346554e1e7c928e2502c9444dfc71[m
+Author: syang1297 <syang1297@gmail.com>
+Date:   Wed Apr 29 20:20:26 2020 -0700
+
+    completed basic framework. missing flexgrid for photos, projects, hover on highlight, scroll to top, and lightbox
+
+[33mcommit 021d89bed551103c6beabde2a2142e6d4fc0d645[m
+Author: syang1297 <syang1297@gmail.com>
+Date:   Wed Apr 29 13:52:10 2020 -0700
+
+    starting react website
+
+[33mcommit 1abc98ba0d496a684865a02b04cecafd8c0bdc10[m
+Author: syang1297 <syang01@umail.ucsb.edu>
+Date:   Mon Apr 20 23:20:12 2020 -0700
+
+    a3
+
+[33mcommit 05b56be5a3d2bb1e081d94d202ecd380d2154696[m
+Author: syang1297 <syang01@umail.ucsb.edu>
+Date:   Mon Apr 20 23:16:01 2020 -0700
+
+    assignment 3
+
+[33mcommit 20872f076a8776a4b61e3e52de4011dccbed011a[m
+Author: syang1297 <syang01@umail.ucsb.edu>
+Date:   Mon Apr 20 22:54:34 2020 -0700
+
+    before comment
+
+[33mcommit 02c4cf315dfc3d2b2ad0a4d774eaac9979f3d921[m
+Author: syang1297 <syang01@umail.ucsb.edu>
+Date:   Mon Apr 20 21:51:26 2020 -0700
+
+    added scroll to top btn
+
+[33mcommit 2673584cbfe449dada6bfa66f2d1f261a8dfbab6[m
+Author: syang1297 <syang01@umail.ucsb.edu>
+Date:   Mon Apr 13 23:45:07 2020 -0700
+
+    assignment 2
+
+[33mcommit fdd85784d952283d622ef775a85521ad0d5bac69[m
+Author: syang1297 <syang01@umail.ucsb.edu>
+Date:   Mon Apr 6 12:41:20 2020 -0700
+
+    added background image to header
+
+[33mcommit 1275c5ddf9f21443a89998c08fb5a74352be0d4d[m
+Author: syang1297 <syang01@umail.ucsb.edu>
+Date:   Mon Apr 6 12:14:36 2020 -0700
+
+    completed first assignment
+
+[33mcommit d126bb3ff415a45e82e7e8815e0fe40fb15dda0e[m
+Author: syang1297 <syang01@umail.ucsb.edu>
+Date:   Sun Apr 5 18:22:31 2020 -0700
+
+    init files
+
+[33mcommit a965f7da821a58b6ec03dde78d238d9400d02a37[m[33m ([m[1;31morigin/dev[m[33m, [m[1;32mdev[m[33m)[m
+Author: Shu <syang1297@gmail.com>
+Date:   Sun Apr 5 18:14:19 2020 -0700
+
+    Update README.md
+
+[33mcommit b9671a5ad690c77a215de31b3e3c90d6bd469689[m
+Author: Shu <syang1297@gmail.com>
+Date:   Sun Apr 5 18:13:38 2020 -0700
+
+    Initial commit
