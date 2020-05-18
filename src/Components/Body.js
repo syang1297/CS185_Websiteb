@@ -5,6 +5,8 @@ import Videos from './Videos.js';
 import Projects from './Projects.js';
 import GuestBook from './GuestBook.js';
 import Movies from './Movies.js';
+import AddMovie from './AddMovie.js';
+import CreateList from './CreateList.js';
 import Err from './Err.js';
 
 
@@ -23,6 +25,10 @@ export class Body extends Component{
       return <GuestBook/>
     }else if (activeTab === 6){
       return <Movies/>
+    }else if(activeTab === 7){
+      return <AddMovie/>
+    }else if (activeTab === 8){
+      return <CreateList/>
     }
     else{
       return <Err/>
