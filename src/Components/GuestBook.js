@@ -2,14 +2,6 @@ import React, {Component} from 'react';
 import Config from '../Config.js';
 import { motion } from "framer-motion"
 
-
-// import Switch from "react-switch";
-// import Alert from '@material-ui/lab/Alert';
-
-
-
-// fix CSS for the guestForm and GuestMessages
-
 const firebase = require('firebase')
 
 export class GuestBook extends Component{ 

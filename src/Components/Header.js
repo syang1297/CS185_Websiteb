@@ -15,6 +15,10 @@ export class Header extends Component{
             return "Guest Book"
         }else if (activeTab === 6){
             return "Movies"
+        }else if (activeTab === 7){
+            return "Add Movie"
+        }else if (activeTab === 8){
+            return "Create List"
         }
         else{
             return "Page Not Found"
