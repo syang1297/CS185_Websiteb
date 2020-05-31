@@ -44,14 +44,8 @@ export class Movies extends Component{
         this.setState({ modalShow: false });
     };
 
-    // refreshPage(){
-    //     window.location.reload(this.props.activeTab = 6);
-
-    // }
     
     deleteMovie = () => {
-        // console.log("logging id");
-        // console.log(currentModal.id);
         var key = currentModal.id.trim();
         let ref = firebase.database().ref('movie/' + key);
         ref.remove()
@@ -61,11 +55,6 @@ export class Movies extends Component{
           .catch(function(error) {
             console.log("Remove failed: " + error.message)
           });
-        this.hideModal();
-        // this.forceUpdate();
-        // this.refreshPage();
-        this.retrieveMovies();
-        this.setState({shouldRender: true});
     };
 
     componentDidMount(){
@@ -73,17 +62,12 @@ export class Movies extends Component{
         if (!firebase.apps.length) {
             firebase.initializeApp(Config);
         } 
-        this.retrieveMovies();
-
-    }
-
-    retrieveMovies(){
-        console.log("retrieve movies called");
-        
         let ref = firebase.database().ref('movie');
         //retrieve its data
         if(this.state.shouldRender){
-            this.setState({movies: []});
+            console.log("logging state in retrieveMovies()");
+            console.log(this.state.movies);
+            // this.setState({movies: []});
             ref.on('value', snapshot => {
                 const state = snapshot.val();
                 for(let s in state){
@@ -91,10 +75,21 @@ export class Movies extends Component{
                     newState = state[s];
                     this.setState({movies: [...this.state.movies, newState]})
                 }
+                this.setState({shouldLoad: true, shouldRender: false})
             });
-            this.setState({shouldLoad: true, shouldRender: false})
         }
     }
+
+    // retrieveMovies(){
+    //     console.log("retrieve movies called");
+        
+    //     if (!firebase.apps.length) {
+    //         firebase.initializeApp(Config);
+    //     } 
+        
+    //     // this.setState({shouldLoad: true, shouldRender: false})
+
+    // }
 
     dimPoster = (e) => {
         e.target.style.filter= 'brightness(40%)';
@@ -106,11 +101,10 @@ export class Movies extends Component{
 
     render(){
         // this.retrieveMovies();
-        console.log("render called");
-        console.log("logging current state");
-        console.log(this.state.movies);
+        // console.log("render called");
+        // console.log("logging current state");
+        // console.log(this.state.movies);
 
-        
         const Movies = this.state.movies && 
         this.state.movies.map(({id, img, title, director, rating}) => {
             return(
