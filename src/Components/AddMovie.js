@@ -13,7 +13,7 @@ export class AddMovie extends Component{
       id: '',
       img: '',
       title: '',
-      direction: '',
+      director: '',
       rating: '',
       movie: []
     }
@@ -50,12 +50,14 @@ export class AddMovie extends Component{
             director: response.data.Director,
             rating: response.data.imdbRating
         }
-        this.setState({movie: [mov]}, this.pushMovie);
+        this.setState(mov, this.pushMovie);
         console.log("logging state in getResponse");
         console.log(this.state);
     })
     .catch(function(error){
+        alert("movieId does not exist")
         console.log("unsuccessful call to api")
+        return;
     })
     .then(function(){
         return;
@@ -82,7 +84,8 @@ export class AddMovie extends Component{
     
     console.log("logging this.state");
     console.log(this.state);
-    ref.push(this.state.movie);
+    // ref.push(this.state.movie);
+    ref.push(this.state);
     console.log("logging this.state.movie");
     console.log(this.state.movie);
     // ref.child(id).setValue(msg);
@@ -91,7 +94,7 @@ export class AddMovie extends Component{
         id: '',
         img: '',
         title: '',
-        direction: '',
+        director: '',
         rating: '',
         movie: []
     });

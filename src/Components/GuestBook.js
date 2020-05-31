@@ -33,6 +33,8 @@ export class GuestBook extends Component{
                 const state = snapshot.val();
                 let newState = [];
                 for(let s in state){
+                    // console.log("logging s");
+                    // console.log(s);
                     if(state[s].dropdown === "Yes"){
                         newState.push({
                             name: state[s].name,
