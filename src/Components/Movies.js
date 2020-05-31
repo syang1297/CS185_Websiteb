@@ -16,7 +16,7 @@ var currentModal = {
     list: []
 }
 
-var lists = [];
+// var lists = [];
 
 export class Movies extends Component{
     constructor(props){
@@ -24,12 +24,19 @@ export class Movies extends Component{
         this.state = {
             movies: [],
             lists: [],
+            currentList: [],
             shouldRender: true,
             shouldRenderList: true,
             shouldLoad: false,
             modalShow: false,
             refresh: false
         }
+        // this.showModal = this.showModal.bind(this);
+        // this.deleteMovie = this.deleteMovie.bind(this);
+        this.retrieveAllMovies = this.retrieveAllMovies.bind(this);
+        // this.retrieveList = this.retrieveList.bind(this);
+        // this.retrieveMovieList = this.retrieveMovieList.bind(this);
+        this.changeList = this.changeList.bind(this);
     }
 
     showModal = (e) => {
@@ -101,26 +108,17 @@ export class Movies extends Component{
                 }
                 console.log("printing newList");
                 console.log(newList);
-                this.setState({lists: newList, shouldRenderList: false});
+                this.setState({lists: newList});
     
                 // this.setState({lists: [...this.state.lists, lists]});
                 // list.push(lists);
             });
         }
-        // this.setState({lists: ["All"]});
-        // let ref1 = firebase.database().ref('list');
-        // ref1.on('value', snapshot=>{
-        //     const lists = snapshot.val();
-        //     console.log(lists);
-        //     for(let l in lists){
-        //         this.setState({lists: [...this.state.lists, l]});
-        //     }
-        // });
         this.retrieveList();
-        // this.retrieveMovieList();
     }
 
-    retrieveMovies(){
+    //Get all movies
+    retrieveAllMovies(){
         console.log("retrieve movies called");
         
         if (!firebase.apps.length) {
@@ -129,27 +127,36 @@ export class Movies extends Component{
         
         let ref = firebase.database().ref('movie');
         //retrieve its data
-        if(this.state.shouldRender){
+        // if(this.state.shouldRender || typeof this.state.shouldRender === 'undefined'){
             // console.log("logging state in retrieveMovies()");
             // console.log(this.state.movies);
             // this.setState({movies: []});
+            let newMovie = [];
+
             ref.on('value', snapshot => {
                 const state = snapshot.val();
                 for(let s in state){
-                    let newState = [];
-                    newState = state[s];
-                    this.setState({movies: [...this.state.movies, newState]})
+                    // let newState = [];
+                    newMovie.push({
+                        id: state[s].id,
+                        img: state[s].img,
+                        title: state[s].title,
+                        director: state[s].director,
+                        rating: state[s].rating
+                    });
+                    // this.setState({movies: [...this.state.movies, newState]})
                 }
             });
-            this.setState({shouldLoad: true})
+            this.setState({movies: newMovie, shouldLoad: true})
 
             // console.log("logging state at end of retrieve movies");
             // console.log(this.state.movies);
-        }
+        // }
         // this.setState({shouldLoad: true, shouldRender: false})
 
     }
 
+    //Makes list?
     retrieveList(){
         if (!firebase.apps.length) {
             firebase.initializeApp(Config);
@@ -166,22 +173,20 @@ export class Movies extends Component{
                         lists[l].title
                     );
                 }
-                this.setState({lists: newList, shouldRenderList: false});
-    
-                // this.setState({lists: [...this.state.lists, lists]});
-                // list.push(lists);
+                this.setState({lists: newList});
             });
         }
 
     }
 
+    //Returns dropdown in lightbox for the lists movie does NOT belong to
     retrieveMovieList(id){
         // console.log("retrieveMovieList called");
         if (!firebase.apps.length) {
             firebase.initializeApp(Config);
         } 
         let list = this.state.lists;
-                console.log("printing list");
+        console.log("printing list");
         console.log(list);
         if(typeof list === 'undefined' || id === null){
             return ["All"];
@@ -196,7 +201,6 @@ export class Movies extends Component{
                 console.log(state[s].movie);
                 console.log(id);
                 if(state[s].movie.trim() === id.trim()){
-
                     var toRemove = state[s].list;
                     var index = list.indexOf(toRemove);
                     if(index > -1 ){
@@ -215,14 +219,55 @@ export class Movies extends Component{
         return list;
     }
 
+    //Changes the movies displayed on the screen due to the list
     changeList(e){
         // alert("changeList clicked")
         console.log("list changing");
         console.log(e);
         console.log(e.value);
         //display all movies that have that movie list pair
+
+        if(e.value.trim() === "All"){
+            this.retrieveAllMovies();
+        }
+        else{
+            let newList = [];
+            let newMovies = [];
+            // e.target.value = e.value;
+            let ref = firebase.database().ref('movieListPair');
+            ref.on('value', snapshot => {
+                const state = snapshot.val();
+                for(let s in state){
+                    if(state[s].list.trim() === e.value.trim()){
+                        newList.push(state[s].movie.trim());
+                    }
+                }
+                // this.setState({currentList: newList});
+            });
+            let ref1 = firebase.database().ref('movie');
+            ref1.on('value', snapshot=>{
+                const movie = snapshot.val();
+                for(let m in movie){
+                    if(newList.indexOf(movie[m].id.trim()) > -1){
+                        newMovies.push({
+                            id: movie[m].id,
+                            img: movie[m].img,
+                            director: movie[m].director,
+                            title: movie[m].title,
+                            rating: movie[m].rating
+                        });
+                    }
+                }
+                this.setState({
+                    movies: newMovies
+                });
+            });
+        }
+
+        // this.retrieveMovies(currentList);
     }
 
+    //Adds movie to a list
     addList(e){
         console.log("add list clicked");
         console.log(e);
@@ -243,7 +288,7 @@ export class Movies extends Component{
 
     render(){
         const unloaded = (<p>Loading movies...</p>)
-
+        // this.retrieveMovies();
         console.log(this.state.movies);
         const Movies = this.state.movies && 
         this.state.movies.map(({id, img, title, director, rating}) => {
@@ -267,7 +312,7 @@ export class Movies extends Component{
             list = this.state.lists;
             console.log("loggings lists");
             console.log(list);
-            var defaultOption = list[0];
+            var defaultOption = "All";
             if(currentModal.id === null){
                 // movieList.push("All");
                 movieList = ["All"];
@@ -282,6 +327,7 @@ export class Movies extends Component{
         
         const loaded = (
             <div>
+                <button className="submitBtn" onClick={this.retrieveAllMovies}>Show All Movies</button>
                 <Dropdown options={list} onChange={this.changeList} value={defaultOption} placeholder="All"/>
                 {/* list.map(()) */}
                 <div className="parent-grid">
