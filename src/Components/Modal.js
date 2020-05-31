@@ -26,14 +26,15 @@ import React, {Component} from "react";
 //     }
 // }
 
-const Modal = ({ handleClose, modalShow, children }) => {
+const Modal = ({ handleClose, modalShow, children, deleteMovie }) => {
     const showHideClassName = modalShow ? "modal display-block" : "modal display-none";
   
     return (
       <div className={showHideClassName}>
         <section className="modal-main">
           {children}
-          <button onClick={handleClose}>close</button>
+          <button onClick={handleClose}>Close</button>
+          <button onClick={deleteMovie}>Delete Movie</button>
         </section>
       </div>
     );
