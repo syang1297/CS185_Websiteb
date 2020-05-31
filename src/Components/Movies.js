@@ -70,7 +70,6 @@ export class Movies extends Component{
         let ref = firebase.database().ref('movie');
         //retrieve its data
         if(this.state.shouldRender){
-            // this.setState({movies: []});
             ref.on('value', snapshot => {
                 const state = snapshot.val();
                 for(let s in state){
@@ -147,8 +146,6 @@ export class Movies extends Component{
     }
 
     render(){
-        // this.retrieveMovies();
-
         console.log(this.state.movies);
         const Movies = this.state.movies && 
         this.state.movies.map(({id, img, title, director, rating}) => {
@@ -172,10 +169,19 @@ export class Movies extends Component{
                 <div className="parent-grid">
                     {Movies}
                     <Modal modalShow={this.state.modalShow} handleClose={this.hideModal} handleDelete={this.deleteMovie}>
-                            <img src={currentModal.img} alt="movie poster"></img>
-                            <p>{currentModal.title}</p>
-                            <p>{currentModal.director}</p>
-                            <p>{currentModal.rating}</p>
+                            <div>
+                                <div>
+                                    <img src={currentModal.img} alt="movie poster"></img>
+                                    <p>{currentModal.title}</p>
+                                    <p>{currentModal.director}</p>
+                                    <p>{currentModal.rating}</p>
+                                </div>
+                                <div>
+                                    <p>Add to list:</p>
+                                    <Dropdown options={this.state.lists} onChange={this.changeList} value={defaultOption} placeholder="All"/>
+                                </div>
+                            </div>
+
                     </Modal>
                 </div>
             </div>
