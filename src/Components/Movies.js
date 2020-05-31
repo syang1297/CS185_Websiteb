@@ -2,31 +2,37 @@ import React, {Component} from 'react';
 import {SRLWrapper} from "simple-react-lightbox";
 import SimpleReactLightbox from 'simple-react-lightbox';
 import Config from '../Config.js';
+import ReactDOM from "react-dom";
+// import Modal from './Modal.js';
+import Modal from './Modal.js';
+
+// import './Modal.js';
+
 
 
 const firebase = require('firebase')
 
 
-const options = {
-    settings: {
-        disableKeyboardControls: true,
-        disableWheelControls: true,
-    },
-    buttons:{
-        showAutoplayButton: false,
-        showFullscreenButton: false,
-        showNextButton: false,
-        showPrevButton: false,
-        showDownloadButton: false,
-    },
-    thumbnails:{
-        showThumbnails: false,
-    }
-};
+// const options = {
+//     settings: {
+//         disableKeyboardControls: true,
+//         disableWheelControls: true,
+//     },
+//     buttons:{
+//         showAutoplayButton: false,
+//         showFullscreenButton: false,
+//         showNextButton: false,
+//         showPrevButton: false,
+//         showDownloadButton: false,
+//     },
+//     thumbnails:{
+//         showThumbnails: false,
+//     }
+// };
 
-const callbacks = {
-    onLightboxOpened: object => console.log(object)
-};
+// const callbacks = {
+//     onLightboxOpened: object => console.log(object)
+// };
 
 export class Movies extends Component{
     constructor(props){
@@ -34,9 +40,18 @@ export class Movies extends Component{
         this.state = {
             movies: [],
             shouldRender: true,
-            shouldLoad: false
+            shouldLoad: false,
+            modalShow: false
         }
     }
+
+    showModal = () => {
+        this.setState({ modalShow: true });
+    };
+    
+      hideModal = () => {
+        this.setState({ modalShow: false });
+    };
     
     componentDidMount(){
         if (!firebase.apps.length) {
@@ -52,18 +67,7 @@ export class Movies extends Component{
                 for(let s in state){
                     let newState = [];
                     // console.log("logging s");
-                    // console.log(s);
-                    // console.log("logging s's values");
-                    // console.log(state[s]);
-                    // console.log(state[s])
-                    // newState.push({
-                    //     // id: state[s].id,
-                    //     // img: state[s].img,
-                    //     // title: state[s].title,
-                    //     // director:state[s].director,
-                    //     // rating: state[s].rating
-                    //     state[s]
-                    // });
+                    
                     newState = state[s];
                     this.setState({movies: [...this.state.movies, newState]})
 
@@ -78,30 +82,7 @@ export class Movies extends Component{
         // console.log(this.state);
     }
 
-    // getRequest(id){
-    //     const id1 = 'https://www.omdbapi.com/?i=';
-    //     const id2 = '&apikey=915b3e92'
-    //     const idCurrent = id1 + id + id2;
-    //     console.log("logging current get request");
-    //     axios.get(idCurrent)
-    //     .then(response =>{
-    //         console.log("successful call to api");
-    //         const movie = {
-    //             id,
-    //             img: response.data.Poster,
-    //             title: response.data.Title,
-    //             director: response.data.Director,
-    //             rating: response.data.imdbRating
-    //         }
-    //         this.setState({movies: [...this.state.movies, movie]})
-    //     })
-    //     .catch(function(error){
-    //         console.log("unsuccessful call to api")
-    //     })
-    //     .then(function(){
-    //         return;
-    //     });
-    // }
+
 
     dimPoster = (e) => {
         e.target.style.filter= 'brightness(40%)';
@@ -129,11 +110,16 @@ export class Movies extends Component{
         })
         const loaded = (
             <div className="parent-grid">
-                <SimpleReactLightbox>
-                <SRLWrapper options={options} callbacks={callbacks}>
+                {/* <SimpleReactLightbox>
+                <SRLWrapper options={options} callbacks={callbacks}> */}
                 {Movies}
-                </SRLWrapper>
-                </SimpleReactLightbox>
+                <Modal modalShow={this.state.modalShow} handleClose={this.hideModal}>
+                    <p>Modal</p>
+                    <p>Data</p>
+                </Modal>
+                <button type="button" onClick={this.showModal}>open</button>
+                {/* </SRLWrapper>
+                </SimpleReactLightbox> */}
             </div>
         );
         const unloaded = (<p>Loading movies...</p>)
@@ -144,3 +130,6 @@ export class Movies extends Component{
 }
 
 export default Movies;
+// const container = document.createElement("div");
+// document.body.appendChild(container);
+// ReactDOM.render(<Movies />, container);
