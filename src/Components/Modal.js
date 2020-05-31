@@ -1,32 +1,6 @@
-import React, {Component} from "react";
+import React from "react";
 
-// export class Modal extends Component {
-//     constructor(props){
-//         super(props);
-//         this.state = {
-//             show: false
-//         }
-//     }
-    
-//     render(){
-//         const showHideClassName;
-//         if(show){
-//             showHideClassName = "modal display-block"
-//         }else{
-//             showHideClassName = "modal display-none"
-//         }
-//         return(
-//             <div className={showHideClassname}>
-//                 <section className="modal-main">
-//                 {children}
-//                 <button onClick={handleClose}>close</button>
-//                 </section>
-//             </div>
-//         );
-//     }
-// }
-
-const Modal = ({ handleClose, modalShow, children, deleteMovie }) => {
+const Modal = ({ handleClose, modalShow, children, handleDelete }) => {
     const showHideClassName = modalShow ? "modal display-block" : "modal display-none";
   
     return (
@@ -34,7 +8,7 @@ const Modal = ({ handleClose, modalShow, children, deleteMovie }) => {
         <section className="modal-main">
           {children}
           <button onClick={handleClose}>Close</button>
-          <button onClick={deleteMovie}>Delete Movie</button>
+          <button onClick={handleDelete}>Delete Movie</button>
         </section>
       </div>
     );
