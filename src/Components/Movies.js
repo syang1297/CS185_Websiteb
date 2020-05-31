@@ -36,7 +36,6 @@ export class Movies extends Component{
             rating: altSplit[2],
             id: altSplit[3]
         }
-
         currentModal = curr;
     };
     
@@ -55,6 +54,7 @@ export class Movies extends Component{
           .catch(function(error) {
             console.log("Remove failed: " + error.message)
           });
+        this.setState({modalShow: false, movies: []}, this.retrieveMovies);
     };
 
     componentDidMount(){
@@ -73,23 +73,43 @@ export class Movies extends Component{
                 for(let s in state){
                     let newState = [];
                     newState = state[s];
-                    this.setState({movies: [...this.state.movies, newState]})
+                    this.setState({movies: [...this.state.movies, newState]});
                 }
-                this.setState({shouldLoad: true, shouldRender: false})
             });
+            this.setState({shouldLoad: true})
+
         }
     }
 
-    // retrieveMovies(){
-    //     console.log("retrieve movies called");
+    retrieveMovies(){
+        console.log("retrieve movies called");
         
-    //     if (!firebase.apps.length) {
-    //         firebase.initializeApp(Config);
-    //     } 
+        if (!firebase.apps.length) {
+            firebase.initializeApp(Config);
+        } 
         
-    //     // this.setState({shouldLoad: true, shouldRender: false})
+        let ref = firebase.database().ref('movie');
+        //retrieve its data
+        if(this.state.shouldRender){
+            // console.log("logging state in retrieveMovies()");
+            // console.log(this.state.movies);
+            // this.setState({movies: []});
+            ref.on('value', snapshot => {
+                const state = snapshot.val();
+                for(let s in state){
+                    let newState = [];
+                    newState = state[s];
+                    this.setState({movies: [...this.state.movies, newState]})
+                }
+            });
+            this.setState({shouldLoad: true})
 
-    // }
+            // console.log("logging state at end of retrieve movies");
+            // console.log(this.state.movies);
+        }
+        // this.setState({shouldLoad: true, shouldRender: false})
+
+    }
 
     dimPoster = (e) => {
         e.target.style.filter= 'brightness(40%)';
@@ -101,10 +121,7 @@ export class Movies extends Component{
 
     render(){
         // this.retrieveMovies();
-        // console.log("render called");
-        // console.log("logging current state");
-        // console.log(this.state.movies);
-
+        console.log(this.state.movies);
         const Movies = this.state.movies && 
         this.state.movies.map(({id, img, title, director, rating}) => {
             return(
@@ -130,6 +147,7 @@ export class Movies extends Component{
         );
         const unloaded = (<p>Loading movies...</p>)
 
+        // return loaded;
         if(this.state.shouldLoad) return loaded
         return unloaded
   }
