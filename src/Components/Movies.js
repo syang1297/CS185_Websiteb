@@ -31,11 +31,11 @@ export class Movies extends Component{
             modalShow: false,
             refresh: false
         }
-        // this.showModal = this.showModal.bind(this);
-        // this.deleteMovie = this.deleteMovie.bind(this);
+        this.showModal = this.showModal.bind(this);
+        this.deleteMovie = this.deleteMovie.bind(this);
         this.retrieveAllMovies = this.retrieveAllMovies.bind(this);
-        // this.retrieveList = this.retrieveList.bind(this);
-        // this.retrieveMovieList = this.retrieveMovieList.bind(this);
+        this.retrieveList = this.retrieveList.bind(this);
+        this.retrieveMovieList = this.retrieveMovieList.bind(this);
         this.changeList = this.changeList.bind(this);
     }
 
@@ -63,6 +63,11 @@ export class Movies extends Component{
 
     
     deleteMovie = () => {
+        // var current = {
+        //     img: currentModal.img,
+        //     title: currentModal.title,
+        //     director:
+        // }
         var key = currentModal.id.trim();
         let ref = firebase.database().ref('movie/' + key);
         ref.remove()
@@ -72,7 +77,17 @@ export class Movies extends Component{
           .catch(function(error) {
             console.log("Remove failed: " + error.message)
           });
-        this.setState({modalShow: false, movies: []}, this.retrieveMovies);
+        var list = this.state.movie;
+        console.log("logging currentModal");
+        console.log(currentModal);
+        var toRemove = currentModal.id.trim();
+        // var index = list.indexOf(toRemove);
+        // if(index > -1 ){
+        //     list.splice(index, 1);
+        // }
+        // this.changeList();
+        // this.retrieveAllMovies();
+       this.setState({movies: list, modalShow: false});
     };
 
     componentDidMount(){
@@ -81,21 +96,24 @@ export class Movies extends Component{
             firebase.initializeApp(Config);
         } 
         let ref = firebase.database().ref('movie');
-        //retrieve its data
-        if(this.state.shouldRender){
-            ref.on('value', snapshot => {
-                const state = snapshot.val();
-                for(let s in state){
-                    let newState = [];
-                    newState = state[s];
-                    this.setState({movies: [...this.state.movies, newState]});
-                }
-            });
-            this.setState({shouldLoad: true})
-        }
+        // retrieve its data
+        // if(this.state.shouldRender){
+        //     ref.on('value', snapshot => {
+        //         const state = snapshot.val();
+        //         for(let s in state){
+        //             let newState = [];
+        //             newState = state[s];
+        //             this.setState({movies: [...this.state.movies, newState]});
+        //         }
+        //     });
+        //     this.setState({shouldLoad: true})
+        // }
+        this.retrieveAllMovies();
+        this.setState({shouldLoad: true});
+        // this.retrieveAllMovies();
         let ref1 = firebase.database().ref('list');
         // let list = [];
-        if(this.state.shouldRenderList){
+        // if(this.state.shouldRenderList){
             ref1.on('value', snapshot =>{
                 const lists = snapshot.val();
                 let newList = [];
@@ -113,8 +131,8 @@ export class Movies extends Component{
                 // this.setState({lists: [...this.state.lists, lists]});
                 // list.push(lists);
             });
-        }
-        this.retrieveList();
+        // }
+        // this.retrieveList();
     }
 
     //Get all movies
@@ -147,7 +165,8 @@ export class Movies extends Component{
                     // this.setState({movies: [...this.state.movies, newState]})
                 }
             });
-            this.setState({movies: newMovie, shouldLoad: true})
+            // this.setState({movies: []});
+            this.setState({movies: newMovie});
 
             // console.log("logging state at end of retrieve movies");
             // console.log(this.state.movies);
@@ -163,7 +182,7 @@ export class Movies extends Component{
         } 
         let ref1 = firebase.database().ref('list');
         // let list = [];
-        if(this.state.shouldRenderList){
+        // if(this.state.shouldRenderList){
             ref1.on('value', snapshot =>{
                 const lists = snapshot.val();
                 let newList = [];
@@ -175,7 +194,7 @@ export class Movies extends Component{
                 }
                 this.setState({lists: newList});
             });
-        }
+        // }
 
     }
 
@@ -222,7 +241,7 @@ export class Movies extends Component{
     //Changes the movies displayed on the screen due to the list
     changeList(e){
         // alert("changeList clicked")
-        console.log("list changing");
+        console.log("list changing to:");
         console.log(e);
         console.log(e.value);
         //display all movies that have that movie list pair
@@ -288,7 +307,6 @@ export class Movies extends Component{
 
     render(){
         const unloaded = (<p>Loading movies...</p>)
-        // this.retrieveMovies();
         console.log(this.state.movies);
         const Movies = this.state.movies && 
         this.state.movies.map(({id, img, title, director, rating}) => {
@@ -313,14 +331,14 @@ export class Movies extends Component{
             console.log("loggings lists");
             console.log(list);
             var defaultOption = "All";
-            if(currentModal.id === null){
-                // movieList.push("All");
-                movieList = ["All"];
-            }else{
-                movieList = this.retrieveMovieList(currentModal.id);
-                console.log("printing movielist");
-                console.log(movieList);
-            }
+            // if(currentModal.id === null){
+            //     // movieList.push("All");
+            //     movieList = ["All"];
+            // }else{
+            //     movieList = this.retrieveMovieList(currentModal.id);
+            //     console.log("printing movielist");
+            //     console.log(movieList);
+            // }
         }else{
             return unloaded;
         }
