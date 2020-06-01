@@ -3,7 +3,6 @@ import Config from '../Config.js';
 import Modal from './Modal.js';
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
-// import List from './List.js';
 
 const firebase = require('firebase')
 
@@ -26,6 +25,7 @@ export class Movies extends Component{
             movies: [],
             lists: [],
             currentList: [],
+            search: [],
             shouldRender: true,
             shouldRenderList: true,
             shouldLoad: false,
@@ -40,6 +40,7 @@ export class Movies extends Component{
         this.retrieveMovieList = this.retrieveMovieList.bind(this);
         this.changeList = this.changeList.bind(this);
         this.handleSearch = this.handleSearch.bind(this);
+        this.handleDisplaySearch = this.handleDisplaySearch.bind(this);
 
     }
 
@@ -49,7 +50,6 @@ export class Movies extends Component{
         if (!firebase.apps.length) {
             firebase.initializeApp(Config);
         } 
-        // let ref = firebase.database().ref('movie');
         this.retrieveAllMovies();
         this.setState({shouldLoad: true});
         let ref1 = firebase.database().ref('list');
@@ -57,7 +57,6 @@ export class Movies extends Component{
                 const lists = snapshot.val();
                 let newList = [];
                 newList.push("All");
-
                 for(let l in lists){
                     newList.push(
                         lists[l].title
@@ -92,6 +91,20 @@ export class Movies extends Component{
         this.setState({
             search: newList
         });
+    }
+
+    handleDisplaySearch(){
+        let searchMovies = [];
+        let currentMovies = [];
+        let newMovies = [];
+        currentMovies = this.state.movies;
+        searchMovies = this.state.search;
+        currentMovies.forEach(item => {
+            if(searchMovies.indexOf(item) > -1){
+                newMovies.push(item);
+            }
+        })
+        this.setState({movies: newMovies});
     }
 
     showModal = (e) => {
@@ -355,6 +368,7 @@ export class Movies extends Component{
             <div>
                 <button className="submitBtn" onClick={this.retrieveAllMovies}>Show All Movies</button>
                 <Dropdown options={list} onChange={this.changeList} value={defaultOption} placeholder="All"/>
+                <button className="submitBtn1" onClick={this.handleDisplaySearch}>Submit Search</button>
                 <div className="search">
                     <input type="text" className="input" onChange={this.handleSearch} placeholder="Search..." />
                     {Search}

@@ -168,6 +168,15 @@
   border-radius: 10px;
 }
 
+.submitBtn1{
+  background-color: rgba(150, 37, 80, .74);
+  padding: 10px;
+  font-weight: bold;
+  color: white;
+  border-radius: 10px;
+  float: right;
+}
+
 .movieInfo{
   display: flex;
 }
@@ -213,8 +222,10 @@
 .searchList{
   background-color: lightgray;
   border: solid 1px gray;
+  visibility: hidden;
 }
 
 .searchList : hover{
   background-color: white;
 }
+
