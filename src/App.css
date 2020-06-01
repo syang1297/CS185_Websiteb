@@ -168,6 +168,64 @@
   border-radius: 10px;
 }
 
+.submitBtn1{
+  background-color: rgba(150, 37, 80, .74);
+  padding: 10px;
+  font-weight: bold;
+  color: white;
+  border-radius: 10px;
+  float: right;
+}
+
 .movieInfo{
   display: flex;
 }
+
+/*modal*/
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width:100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.modal-main {
+  position:fixed;
+  background: white;
+  width: 80%;
+  height: auto;
+  top:50%;
+  left:50%;
+  transform: translate(-50%,-50%);
+}
+
+.modal-main > div {
+  display: flex;
+}
+
+.display-block {
+  display: block;
+}
+
+.display-none {
+  display: none;
+}
+
+.search{
+  /* display: right; */
+  float: right;
+  width: 200px;
+}
+
+.searchList{
+  background-color: lightgray;
+  border: solid 1px gray;
+  visibility: hidden;
+}
+
+.searchList : hover{
+  background-color: white;
+}
+

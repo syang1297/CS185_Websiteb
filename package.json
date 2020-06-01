@@ -12,6 +12,7 @@
     "framer-motion": "^1.10.3",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-dropdown": "^1.7.0",
     "react-popupbox": "^2.0.8",
     "react-scripts": "3.4.1",
     "react-scroll-up-button": "^1.6.4",
