@@ -203,3 +203,18 @@
 .display-none {
   display: none;
 }
+
+.search{
+  /* display: right; */
+  float: right;
+  width: 200px;
+}
+
+.searchList{
+  background-color: lightgray;
+  border: solid 1px gray;
+}
+
+.searchList : hover{
+  background-color: white;
+}
