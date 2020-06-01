@@ -30,7 +30,9 @@ export class Movies extends Component{
             shouldRenderList: true,
             shouldLoad: false,
             modalShow: false,
-            refresh: false
+            refresh: false,
+            loading: false,
+            limit: 8
         }
         this.showModal = this.showModal.bind(this);
         this.hideModal = this.hideModal.bind(this);
@@ -50,6 +52,7 @@ export class Movies extends Component{
         if (!firebase.apps.length) {
             firebase.initializeApp(Config);
         } 
+        // this.onListenForMessages();
         this.retrieveAllMovies();
         this.setState({shouldLoad: true});
         let ref1 = firebase.database().ref('list');
@@ -62,13 +65,30 @@ export class Movies extends Component{
                         lists[l].title
                     );
                 }
-                console.log("printing newList");
-                console.log(newList);
-                console.log("logging props.items");
-                console.log(this.props.items)
                 this.setState({lists: newList, search: this.props.items});
             });
     }
+
+    // onListenForMessages(){
+    //     if (!firebase.apps.length) {
+    //         firebase.initializeApp(Config);
+    //     } 
+    //     const db = firebase.firestore();
+    //     this.setState({loading: true});
+    //     let newMovie = [];
+    //     let docRef = db.collection('movies');
+    //     return docRef.get().then(snapshot => {
+    //         let startAtSnapshot= db.collection('movies').orderBy('title').startAt(snapshot);
+    //         return startAtSnapshot.limit(8).get();
+    //     })
+    // }
+
+    // onNextPage = () => {
+    //     this.setState(
+    //         state => ({limit: state.limit + 8}),
+    //         this.onListenForMessages
+    //     );
+    // };
 
     componentWillReceiveProps(nextProps){
         this.setState({search: nextProps.items});
@@ -79,7 +99,6 @@ export class Movies extends Component{
         let newList = [];
         if (e.target.value !== "") {
             currentList = this.state.movies;
-            console.log(currentList);
             newList = currentList.filter(item => {
                 const lc = item.title.toLowerCase();
                 const filter = e.target.value.toLowerCase();
@@ -122,13 +141,10 @@ export class Movies extends Component{
             list: l
         }
         currentModal = curr;
-        console.log(currentModal);
     };
     
     showSearchModal = (e) =>{
         this.setState({modalShow: true});
-        console.log(e);
-        console.log(e.target);
         const movie = e.target;
         var l = this.retrieveMovieList(movie.id);
         var curr={
@@ -159,10 +175,10 @@ export class Movies extends Component{
             console.log("Remove failed: " + error.message)
           });
         var list = this.state.movie;
-        console.log("logging currentModal");
-        console.log(currentModal);
-        // var toRemove = currentModal.id.trim();
+        // console.log(list);
         this.setState({movies: list, modalShow: false});
+        this.retrieveAllMovies();
+
     };
 
     // pagination(){
@@ -234,8 +250,6 @@ export class Movies extends Component{
             firebase.initializeApp(Config);
         } 
         let list = this.state.lists;
-        console.log("printing list");
-        console.log(list);
         if(typeof list === 'undefined' || id === null){
             return ["All"];
         }
@@ -244,8 +258,6 @@ export class Movies extends Component{
         ref.on('value', snapshot => {
             const state = snapshot.val();
             for(let s in state){
-                console.log(state[s].movie);
-                console.log(id);
                 if(state[s].movie.trim() === id.trim()){
                     var toRemove = state[s].list;
                     var index = list.indexOf(toRemove);
@@ -260,16 +272,11 @@ export class Movies extends Component{
                 list.splice(index, 1);
             }
         });
-        console.log("printing returning list");
-        console.log(list);
         return list;
     }
 
     //Changes the movies displayed on the screen due to the list
     changeList(e){
-        console.log("list changing to:");
-        console.log(e);
-        console.log(e.value);
         //display all movies that have that movie list pair
         if(e.value.trim() === "All"){
             this.retrieveAllMovies();
@@ -310,8 +317,6 @@ export class Movies extends Component{
     //Adds movie to a list
     addList(e){
         console.log("add list clicked");
-        console.log(e);
-        console.log(currentModal);
         firebase.database().ref('movieListPair/' + currentModal.id.trim() + '-' + e.value).set({
             movie: currentModal.id.trim(),
             list: e.value
@@ -328,8 +333,6 @@ export class Movies extends Component{
 
     render(){
         const unloaded = (<p>Loading movies...</p>)
-        console.log(this.state.movies);
-
         const Movies = this.state.movies && 
         this.state.movies.map(({id, img, title, director, rating}) => {
             return(
@@ -357,8 +360,6 @@ export class Movies extends Component{
             var movieList = [];
             var list = [];
             list = this.state.lists;
-            console.log("loggings lists");
-            console.log(list);
             var defaultOption = "All";
         }else{
             return unloaded;
@@ -389,6 +390,13 @@ export class Movies extends Component{
                                 </div>
                             </div>
                     </Modal>
+                </div>
+                <div>
+                      {!this.state.loading && (
+                          <button onClick={this.onNextPage}>
+                              Load More Movies
+                          </button>
+                      )}  
                 </div>
             </div>
         );
