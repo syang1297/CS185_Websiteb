@@ -225,4 +225,9 @@
   visibility: hidden;
 }
 
+/* Assignment 7 */
+.svg{
+  overflow: hidden;
+  vertical-align: middle;
+}
 

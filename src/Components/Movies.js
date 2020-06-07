@@ -165,7 +165,8 @@ export class Movies extends Component{
                         img: state[s].img,
                         title: state[s].title,
                         director: state[s].director,
-                        rating: state[s].rating
+                        rating: state[s].rating,
+                        actor: state[s].actors
                     });
                 }
             });

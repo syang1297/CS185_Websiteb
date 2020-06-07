@@ -19,6 +19,8 @@ export class Header extends Component{
             return "Add Movie"
         }else if (activeTab === 8){
             return "Create List"
+        }else if (activeTab === 9){
+            return "Graph"
         }
         else{
             return "Page Not Found"

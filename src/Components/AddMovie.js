@@ -9,13 +9,7 @@ export class AddMovie extends Component{
   constructor(){
     super();
     this.state = {
-    //   // key: '',
       id: ''
-    //   img: '',
-    //   title: '',
-    //   director: '',
-    //   rating: '',
-    //   movie: []
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -42,20 +36,8 @@ export class AddMovie extends Component{
     axios.get(idCurrent)
     .then(response =>{
         console.log("successful call to api");
-        // const mov = {
-        //     // key: '', 
-        //     id,
-        //     img: response.data.Poster,
-        //     title: response.data.Title,
-        //     director: response.data.Director,
-        //     rating: response.data.imdbRating
-        // }
-        // this.setState(mov, this.pushMovie);
-        // this.setState(
-        //   {id: id, img: response.data.Poster, title: response.data.Title,
-        //   director: response.data.Director, rating: response.data.imdbRating}
-        // );
-        this.pushMovie(id, response.data.Poster, response.data.Title, response.data.Director, response.data.imdbRating);
+        console.log(response);
+        this.pushMovie(id, response.data.Poster, response.data.Title, response.data.Director, response.data.imdbRating, response.data.Actors);
         console.log("logging state in getResponse");
         console.log(this.state);
     })
@@ -84,35 +66,16 @@ export class AddMovie extends Component{
     this.getRequest(this.state.id);
   }
 
-  pushMovie(id, img, title, director, rating){
-    // const ref = firebase.database().ref('movie/');
-    
-    // console.log("logging this.state");
-    // console.log(this.state);
-    // // ref.push(this.state.movie);
-    // ref.push(this.state);
-    // console.log("logging this.state.movie");
-    // console.log(this.state.movie);
-    // ref.child(id).setValue(msg);
+  pushMovie(id, img, title, director, rating, actor){
     console.log("going into pushMovie");
-    // console.log(this.state);
-
     firebase.database().ref('movie/' + this.state.id).set({
       id: id,
       img: img,
       title: title,
       director: director,
-      rating: rating
+      rating: rating,
+      actors: actor
     });
-    // this.setState({
-    //     // key: '',
-    //     id: '',
-    //     img: '',
-    //     title: '',
-    //     director: '',
-    //     rating: '',
-    //     movie: []
-    // });
     alert('Movie added');
 
   }
