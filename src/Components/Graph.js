@@ -52,6 +52,29 @@ export class Graph extends Component{
       const svg = d3.create("svg")
          .attr("viewBox", [0, 0, width, height]);
 
+    
+        let defs = svg.append('svg:defs');
+        let nodeMovie = [];
+        for(let n in nodes){
+            if(nodes[n].group === 0){
+                let nd = {
+                    title: nodes[n].title.trim(),
+                    actors: nodes[n].actors,
+                    group:  nodes[n].group,
+                    img: nodes[n].img.trim(),
+                    id: nodes[n].id.trim()
+                }
+                nodeMovie.push(nd);
+            }
+        }
+        console.log("logging nodeMovie");
+        console.log(nodeMovie);
+        nodeMovie.forEach( node => {
+            defs.append("svg:pattern").attr("id", node.id).attr("width", 1).attr("height", 1)
+                .append("svg:image").attr("xlink:href", node.img).attr("width", 350).attr("height", 350).attr("x", 0).attr("y", 0);
+        });
+        
+        
       const link = svg.append("g")
         .attr("stroke", "#999")
         .attr("stroke-opacity", 0.6)
@@ -60,10 +83,21 @@ export class Graph extends Component{
         .join("line")
         .attr("stroke-width", d => Math.sqrt(d.value));
 
+
+      const filler= (node) => {
+          if(node.group !== 1){
+            //   console.log("went into filler if statement");
+              return "url(#" + node.id + ")"
+          }
+      }
+
       const color = (node) => {
+        //   console.log("logging node");
+        //   console.log(node.img);
           if(node.group === 1)
             return d3.color("pink")
           return d3.color("blue")
+        // return 'url(#' + node.img + ')';
       }
 
       const radius = (node) => {
@@ -73,10 +107,22 @@ export class Graph extends Component{
             return 100;
       }
 
+
       const simulation = d3.forceSimulation(nodeObj)
         .force("link", d3.forceLink().links(links).id(d=>{return d.index;}).distance(200))
         .force("charge", d3.forceManyBody())
         .force("center", d3.forceCenter(width/2, height/2));
+
+        const node = svg.append("g")
+        .attr("stroke", "#fff")
+        .attr("stroke-width", 1.5)
+        .selectAll("circle")
+        .data(nodeObj)
+        .join("circle")
+        .attr("r", radius)
+        .attr("fill", color)
+        .style("fill", filler)
+        .call(this.drag(simulation));
 
       simulation.on("tick", () => {
           link
@@ -90,15 +136,9 @@ export class Graph extends Component{
       });
 
       
-      const node = svg.append("g")
-        .attr("stroke", "#fff")
-        .attr("stroke-width", 1.5)
-        .selectAll("circle")
-        .data(nodeObj)
-        .join("circle")
-        .attr("r", radius)
-        .attr("fill", color)
-        .call(this.drag(simulation));
+      console.log("logging defs");
+      console.log(defs);
+      console.log(svg.defs);
 
     //   console.log(link);
     //   console.log(node);
@@ -138,7 +178,8 @@ componentDidMount(){
             title: movs[m].title,
             actors: movs[m].actor,
             img: movs[m].img,
-            group: movs[m].group
+            group: movs[m].group,
+            id: movs[m].id
         }
         nodes.push(mov);
         var actors = mov.actors;
