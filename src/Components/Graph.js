@@ -106,6 +106,11 @@ export class Graph extends Component{
             return 100;
       }
 
+      let tooltip = d3.select('body')
+      .append('div')
+      .style('z-index', '10')
+      .style('position', 'absolute')
+      .style('visibility', 'hidden')
 
       const simulation = d3.forceSimulation(nodeObj)
         .force("link", d3.forceLink().links(linkObj).id(d=>{return d.index;}).distance(200))
@@ -121,6 +126,17 @@ export class Graph extends Component{
         .attr("r", radius)
         .attr("fill", color)
         .call(this.drag(simulation));
+
+        node.on('mouseover', function(node){
+            if(node.group === 1) {
+              tooltip.text(node.name);
+              tooltip.style('visibility', 'visible');
+              tooltip.style('top', (d3.event.y-10)+'px').style('left',(d3.event.x+10)+'px');
+            }
+          })
+            .on('mouseout', function(){
+            return tooltip.style('visibility', 'hidden');
+          });
 
       simulation.on("tick", () => {
           link
