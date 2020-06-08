@@ -108,7 +108,7 @@ export class Graph extends Component{
 
 
       const simulation = d3.forceSimulation(nodeObj)
-        .force("link", d3.forceLink().links(links).id(d=>{return d.index;}).distance(200))
+        .force("link", d3.forceLink().links(linkObj).id(d=>{return d.index;}).distance(200))
         .force("charge", d3.forceManyBody())
         .force("center", d3.forceCenter(width/2, height/2));
 
@@ -170,6 +170,8 @@ componentDidMount(){
         }
         nodes.push(mov);
         var actors = mov.actors;
+        console.log("logging actors");
+        console.log(actors);
         var list = actors.split(",");
         for(let a in list){
             let actor = {group: 1, name: list[a].trim()}
@@ -184,8 +186,10 @@ componentDidMount(){
                 console.log(pos);
                 nodes.push(actor);
             }
+
+            var targ = nodes.map(function(d) {return d.name;}).indexOf(actor.name);
             var link = {source: nodes.indexOf(mov),
-                        target: nodes.map(function(n) {return n.name;}).indexOf(actor.name)}
+                        target: targ}
             links.push(link);
         }
     }
