@@ -9,8 +9,8 @@ export class Graph extends Component{
   constructor(props){
     super(props);
     this.state = {
-        nodes: [],
-        links: [],
+        Nodes: [],
+        Links: [],
         movies: []
     }
     this.chart = this.chart.bind(this);
@@ -40,7 +40,9 @@ export class Graph extends Component{
   }
 
   chart(nodes, links){
-    //   console.log("chart called");
+      console.log("chart called");
+      console.log(nodes);
+      console.log(links);
       const width = 1980;
       const height = 1080;
 
@@ -124,34 +126,44 @@ componentDidMount(){
     let links = [];
 
     // let movs = this.state.movies;
-    console.log("logging retrieved movies");
-    console.log(movs);
+    // console.log("logging retrieved movies");
+    // console.log(movs);
 
     for(let m in movs){
-        console.log("hello");
-        console.log("logging movs[m]");
-        console.log(movs[m]);
-        nodes.push(movs[m]);
-        var actors = movs[m].actors;
+        // console.log("hello");
+        // console.log("logging movs[m]");
+        // console.log(movs[m]);
+        // nodes.push(movs[m]);
+        var mov = {
+            title: movs[m].title,
+            actors: movs[m].actor,
+            img: movs[m].img,
+            group: movs[m].group
+        }
+        nodes.push(mov);
+        var actors = mov.actors;
         var list = actors.split(",");
+        // console.log("here");
         for(let a in list){
             let actor = {group: 1, name: list[a].trim()}
             //check if actor already exists
             if(nodes.indexOf(actor) <= -1){
-                nodes.push(a);
+                nodes.push(actor);
             }
             //TODO: figure this out
-            var link = {source: this.state.nodes.indexOf(movs[m]),
-                        target: this.state.nodes.map(function(n) {return n.name;}).indexOf(actor.name)}
+            var link = {source: nodes.indexOf(mov),
+                        target: nodes.map(function(n) {return n.name;}).indexOf(actor.name)}
             links.push(link);
         }
+        // console.log("logging nodes");
+        // console.log(nodes);
     }
 
     // console.log("logging after for loop");
 
     this.setState({
-        links: links,
-        nodes: nodes
+        Links: links,
+        Nodes: nodes
     });
 
     // console.log("Logging in line 176");
@@ -182,25 +194,13 @@ componentDidMount(){
                 }
             }
         });
-    // console.log(newMovie);
     return newMovie;
-    // this.setState({movies: newMovie});
-    // console.log(this.state.movies);
-    // this.retrieveNodes(newMovie);
-    // this.retrieveNodes(newMovie);
   }
 
-//   retrieveNodes(){
-//     //stub
-//   }
-
-//   retrieveLinks(){
-//     //stub
-//   }
 
   componentDidUpdate(){
       const elem = document.getElementById("mysvg");
-      elem.appendChild(this.chart(this.state.nodes, this.state.links));
+      elem.appendChild(this.chart(this.state.Nodes, this.state.Links));
   }
 
   render(){
