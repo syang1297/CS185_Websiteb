@@ -31,15 +31,14 @@ const data = {
 }
 
 export class Graph extends Component{ 
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
     this.state = {
         nodes: [],
-        links: [],
-        movies: []
+        links: []
+        // movies: []
     }
     this.chart = this.chart.bind(this);
-    
   }
 
   drag = (simulation) => {
@@ -67,7 +66,7 @@ export class Graph extends Component{
 
   chart(nodes, links){
       console.log("chart called");
-      const width = 1920;
+      const width = 1980;
       const height = 1080;
 
       const linkObj = links.map(d => Object.create(d));
@@ -84,20 +83,18 @@ export class Graph extends Component{
         .join("line")
         .attr("stroke-width", d => Math.sqrt(d.value));
 
-    //   const color = (node) => {
-    //       if(node.group === 1)
-    //         return d3.color("pink")
-    //       return d3.color("blue")
-    //   }
+      const color = (node) => {
+          if(node.group === 1)
+            return d3.color("pink")
+          return d3.color("blue")
+      }
 
-      const node = svg.append("g")
-        .attr("stroke", "#fff")
-        .attr("stroke-width", 1.5)
-        .selectAll("circle")
-        .data(nodeObj)
-        .join("circle")
-        .attr("r", 20)
-        .attr("fill", d3.color("steelblue"))
+      const radius = (node) => {
+          if(node.group === 1)
+            return 50;
+          else
+            return 100;
+      }
 
       const simulation = d3.forceSimulation(nodeObj)
         .force("link", d3.forceLink().links(links).id(d=>{return d.index;}).distance(200))
@@ -115,6 +112,20 @@ export class Graph extends Component{
             .attr("cy", d => d.y);
       });
 
+      
+      const node = svg.append("g")
+        .attr("stroke", "#fff")
+        .attr("stroke-width", 1.5)
+        .selectAll("circle")
+        .data(nodeObj)
+        .join("circle")
+        .attr("r", radius)
+        .attr("fill", color)
+        .call(this.drag(simulation));
+
+      console.log(link);
+      console.log(node);
+      console.log(svg.node());
       return svg.node();
   }
 
@@ -137,6 +148,10 @@ componentDidMount(){
 
     //read from graphviz and fill out state vars
     const elem = document.getElementById("mysvg");
+    // console.log("logging elem");
+    // console.log(elem);
+
+
 
     elem.appendChild(this.chart(data.nodes, data.links));
   }
@@ -166,7 +181,6 @@ componentDidMount(){
 
   retrieveNodes(){
     //stub
-    // console.log(this.state.movies);
   }
 
   retrieveLinks(){
@@ -175,9 +189,12 @@ componentDidMount(){
 
   render(){
     return (
-        <div id="mysvg">
-
+        <div>
+            <div className= "graphBody">
+                <div id="mysvg"></div>
+            </div>
         </div>
+
     );
   }
 }

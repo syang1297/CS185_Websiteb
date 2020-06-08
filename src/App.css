@@ -226,8 +226,26 @@
 }
 
 /* Assignment 7 */
-/* #mysvg{
-  overflow: hidden;
+.graphBody{
+  display: flex;
+  flex-wrap: wrap;
+  overflow: auto;
+  flex: 1 1;
+  min-width: 900px;
+  min-height: 1500;
+}
+
+
+ #mysvg{
+  overflow: auto;
   vertical-align: middle;
-} */
+  display: block;
+  width: 100%;
+  height: auto;
+}
+/*
+#mysvg > div{
+  display: block;
+  vertical-align: middle;
+} */ 
 
