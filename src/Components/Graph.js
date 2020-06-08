@@ -40,9 +40,9 @@ export class Graph extends Component{
   }
 
   chart(nodes, links){
-      console.log("chart called");
-      console.log(nodes);
-      console.log(links);
+    //   console.log("chart called");
+    //   console.log(nodes);
+    //   console.log(links);
       const width = 1980;
       const height = 1080;
 
@@ -67,12 +67,14 @@ export class Graph extends Component{
                 nodeMovie.push(nd);
             }
         }
-        console.log("logging nodeMovie");
-        console.log(nodeMovie);
+        // console.log("logging nodeMovie");
+        // console.log(nodeMovie);
         nodeMovie.forEach( node => {
             defs.append("svg:pattern").attr("id", node.id).attr("width", 1).attr("height", 1)
-                .append("svg:image").attr("xlink:href", node.img).attr("width", 350).attr("height", 350).attr("x", 0).attr("y", 0);
+                .append("svg:image").attr("xlink:href", node.img).attr("width", 450).attr("height", 450).attr("x", -70).attr("y", 0);
         });
+
+        let hover = d3.select("body").append("div").style("visibility", "hidden");
         
         
       const link = svg.append("g")
@@ -84,20 +86,10 @@ export class Graph extends Component{
         .attr("stroke-width", d => Math.sqrt(d.value));
 
 
-      const filler= (node) => {
-          if(node.group !== 1){
-            //   console.log("went into filler if statement");
-              return "url(#" + node.id + ")"
-          }
-      }
-
       const color = (node) => {
-        //   console.log("logging node");
-        //   console.log(node.img);
           if(node.group === 1)
             return d3.color("pink")
-          return d3.color("blue")
-        // return 'url(#' + node.img + ')';
+        return 'url(#' + node.id + ')';
       }
 
       const radius = (node) => {
@@ -114,6 +106,15 @@ export class Graph extends Component{
         .force("center", d3.forceCenter(width/2, height/2));
 
         const node = svg.append("g")
+        .on("mouseover", function(d){
+                return hover.text(d.name).style("visibility", "visible");
+            })
+        .on("mouseout", function(d){
+                return hover.style("visibility", "hidden");
+            })
+        .on("mousemove", function(d){
+                return hover.text(d.name).style("right", (d3.event.pageX-15)+("px")).style("top", (d3.event.pageY-15)+("px"));
+        })
         .attr("stroke", "#fff")
         .attr("stroke-width", 1.5)
         .selectAll("circle")
@@ -121,7 +122,6 @@ export class Graph extends Component{
         .join("circle")
         .attr("r", radius)
         .attr("fill", color)
-        .style("fill", filler)
         .call(this.drag(simulation));
 
       simulation.on("tick", () => {
@@ -140,9 +140,6 @@ export class Graph extends Component{
       console.log(defs);
       console.log(svg.defs);
 
-    //   console.log(link);
-    //   console.log(node);
-    //   console.log(svg.node());
       return svg.node();
   }
 
