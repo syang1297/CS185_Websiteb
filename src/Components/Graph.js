@@ -131,7 +131,7 @@ export class Graph extends Component{
             if(node.group === 1) {
               tooltip.text(node.name);
               tooltip.style('visibility', 'visible');
-              tooltip.style('top', (d3.event.y-10)+'px').style('left',(d3.event.x+10)+'px');
+              tooltip.style('top', (d3.event.y-5)+'px').style('left',(d3.event.x+5)+'px');
             }
           })
             .on('mouseout', function(){
