@@ -106,9 +106,14 @@ export class Graph extends Component{
             return 100;
       }
 
+      let tooltip = d3.select('body')
+      .append('div')
+      .style('z-index', '10')
+      .style('position', 'absolute')
+      .style('visibility', 'hidden')
 
       const simulation = d3.forceSimulation(nodeObj)
-        .force("link", d3.forceLink().links(links).id(d=>{return d.index;}).distance(200))
+        .force("link", d3.forceLink().links(linkObj).id(d=>{return d.index;}).distance(200))
         .force("charge", d3.forceManyBody())
         .force("center", d3.forceCenter(width/2, height/2));
 
@@ -121,6 +126,17 @@ export class Graph extends Component{
         .attr("r", radius)
         .attr("fill", color)
         .call(this.drag(simulation));
+
+        node.on('mouseover', function(node){
+            if(node.group === 1) {
+              tooltip.text(node.name);
+              tooltip.style('visibility', 'visible');
+              tooltip.style('top', (d3.event.y-5)+'px').style('left',(d3.event.x+5)+'px');
+            }
+          })
+            .on('mouseout', function(){
+            return tooltip.style('visibility', 'hidden');
+          });
 
       simulation.on("tick", () => {
           link
@@ -170,6 +186,8 @@ componentDidMount(){
         }
         nodes.push(mov);
         var actors = mov.actors;
+        console.log("logging actors");
+        console.log(actors);
         var list = actors.split(",");
         for(let a in list){
             let actor = {group: 1, name: list[a].trim()}
@@ -184,8 +202,10 @@ componentDidMount(){
                 console.log(pos);
                 nodes.push(actor);
             }
+
+            var targ = nodes.map(function(d) {return d.name;}).indexOf(actor.name);
             var link = {source: nodes.indexOf(mov),
-                        target: nodes.map(function(n) {return n.name;}).indexOf(actor.name)}
+                        target: targ}
             links.push(link);
         }
     }
