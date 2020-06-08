@@ -2,41 +2,16 @@ import React, {Component} from 'react';
 import Config from '../Config.js';
 import * as d3 from 'd3';
 
-
 const firebase = require('firebase')
-// var d3 = require('d3');
-
-
 let movieIDs = [];
-
-
-const data = {
-    nodes: [
-        {
-            name: "Shu",
-            group: 1
-        },
-        {
-            name: "Yang",
-            group: 2
-        }
-    ],
-    links: [
-        {
-            source: 1,
-            target: 0,
-            value: 1 //don't need value but she's just showing it to us
-        }
-    ]
-}
 
 export class Graph extends Component{ 
   constructor(props){
     super(props);
     this.state = {
         nodes: [],
-        links: []
-        // movies: []
+        links: [],
+        movies: []
     }
     this.chart = this.chart.bind(this);
   }
@@ -65,7 +40,7 @@ export class Graph extends Component{
   }
 
   chart(nodes, links){
-      console.log("chart called");
+    //   console.log("chart called");
       const width = 1980;
       const height = 1080;
 
@@ -123,37 +98,71 @@ export class Graph extends Component{
         .attr("fill", color)
         .call(this.drag(simulation));
 
-      console.log(link);
-      console.log(node);
-      console.log(svg.node());
+    //   console.log(link);
+    //   console.log(node);
+    //   console.log(svg.node());
       return svg.node();
   }
 
 componentDidMount(){
     //add movies to graphviz
-    // if(!firebase.apps.length){
-    //     firebase.initializeApp(Config);
-    // }
-    // let ref = firebase.database().ref('movieListPair');
-    //     ref.on('value', snapshot => {
-    //         const state = snapshot.val();
-    //         for(let s in state){
-    //             if(state[s].list === "GraphViz"){
-    //                 movieIDs.push(state[s].movie);
-    //             }
-    //         }
-    //     });
-    // // console.log(movieIDs);
-    // this.retrieveMovies();
+    if(!firebase.apps.length){
+        firebase.initializeApp(Config);
+    }
+    let ref = firebase.database().ref('movieListPair');
+        ref.on('value', snapshot => {
+            const state = snapshot.val();
+            for(let s in state){
+                if(state[s].list === "GraphViz"){
+                    movieIDs.push(state[s].movie);
+                }
+            }
+        });
+    // console.log(movieIDs);
+    var movs = this.retrieveMovies();
+    let nodes = [];
+    let links = [];
+
+    // let movs = this.state.movies;
+    console.log("logging retrieved movies");
+    console.log(movs);
+
+    for(let m in movs){
+        console.log("hello");
+        console.log("logging movs[m]");
+        console.log(movs[m]);
+        nodes.push(movs[m]);
+        var actors = movs[m].actors;
+        var list = actors.split(",");
+        for(let a in list){
+            let actor = {group: 1, name: list[a].trim()}
+            //check if actor already exists
+            if(nodes.indexOf(actor) <= -1){
+                nodes.push(a);
+            }
+            //TODO: figure this out
+            var link = {source: this.state.nodes.indexOf(movs[m]),
+                        target: this.state.nodes.map(function(n) {return n.name;}).indexOf(actor.name)}
+            links.push(link);
+        }
+    }
+
+    // console.log("logging after for loop");
+
+    this.setState({
+        links: links,
+        nodes: nodes
+    });
+
+    // console.log("Logging in line 176");
+    // console.log(links);
+    // console.log(nodes);
 
     //read from graphviz and fill out state vars
-    const elem = document.getElementById("mysvg");
+    // const elem = document.getElementById("mysvg");
     // console.log("logging elem");
     // console.log(elem);
-
-
-
-    elem.appendChild(this.chart(data.nodes, data.links));
+    // elem.appendChild(this.chart(this.state.nodes, this.state.links));
   }
 
   retrieveMovies(){
@@ -167,24 +176,31 @@ componentDidMount(){
                         id: state[s].id,
                         img: state[s].img,
                         title: state[s].title,
-                        actor: state[s].actors
+                        actor: state[s].actors,
+                        group: 0
                     });
                 }
             }
         });
-    console.log(newMovie);
-    this.setState({movies: newMovie});
+    // console.log(newMovie);
+    return newMovie;
+    // this.setState({movies: newMovie});
     // console.log(this.state.movies);
-    this.retrieveNodes(newMovie);
-    this.retrieveNodes(newMovie);
+    // this.retrieveNodes(newMovie);
+    // this.retrieveNodes(newMovie);
   }
 
-  retrieveNodes(){
-    //stub
-  }
+//   retrieveNodes(){
+//     //stub
+//   }
 
-  retrieveLinks(){
-    //stub
+//   retrieveLinks(){
+//     //stub
+//   }
+
+  componentDidUpdate(){
+      const elem = document.getElementById("mysvg");
+      elem.appendChild(this.chart(this.state.nodes, this.state.links));
   }
 
   render(){
