@@ -40,9 +40,6 @@ export class Graph extends Component{
   }
 
   chart(nodes, links){
-    //   console.log("chart called");
-    //   console.log(nodes);
-    //   console.log(links);
       const width = 1980;
       const height = 1080;
 
@@ -55,6 +52,7 @@ export class Graph extends Component{
     
         let defs = svg.append('svg:defs');
         let nodeMovie = [];
+        let nodeActor = [];
         for(let n in nodes){
             if(nodes[n].group === 0){
                 let nd = {
@@ -66,15 +64,24 @@ export class Graph extends Component{
                 }
                 nodeMovie.push(nd);
             }
+            else{
+                let a = {
+                    group: nodes[n].group,
+                    name: nodes[n].name.trim()
+                }
+            }
         }
-        // console.log("logging nodeMovie");
-        // console.log(nodeMovie);
+
         nodeMovie.forEach( node => {
             defs.append("svg:pattern").attr("id", node.id).attr("width", 1).attr("height", 1)
                 .append("svg:image").attr("xlink:href", node.img).attr("width", 450).attr("height", 450).attr("x", -70).attr("y", 0);
         });
 
-        let hover = d3.select("body").append("div").style("visibility", "hidden");
+        //code for hover
+        nodeActor.forEach(node=>{
+            node.append("svg:title")
+            .text(function(d){return d.name});
+        })
         
         
       const link = svg.append("g")
@@ -106,15 +113,6 @@ export class Graph extends Component{
         .force("center", d3.forceCenter(width/2, height/2));
 
         const node = svg.append("g")
-        .on("mouseover", function(d){
-                return hover.text(d.name).style("visibility", "visible");
-            })
-        .on("mouseout", function(d){
-                return hover.style("visibility", "hidden");
-            })
-        .on("mousemove", function(d){
-                return hover.text(d.name).style("right", (d3.event.pageX-15)+("px")).style("top", (d3.event.pageY-15)+("px"));
-        })
         .attr("stroke", "#fff")
         .attr("stroke-width", 1.5)
         .selectAll("circle")
@@ -157,20 +155,12 @@ componentDidMount(){
                 }
             }
         });
-    // console.log(movieIDs);
     var movs = this.retrieveMovies();
     let nodes = [];
     let links = [];
 
-    // let movs = this.state.movies;
-    // console.log("logging retrieved movies");
-    // console.log(movs);
 
     for(let m in movs){
-        // console.log("hello");
-        // console.log("logging movs[m]");
-        // console.log(movs[m]);
-        // nodes.push(movs[m]);
         var mov = {
             title: movs[m].title,
             actors: movs[m].actor,
@@ -181,38 +171,30 @@ componentDidMount(){
         nodes.push(mov);
         var actors = mov.actors;
         var list = actors.split(",");
-        // console.log("here");
         for(let a in list){
             let actor = {group: 1, name: list[a].trim()}
             //check if actor already exists
+            console.log("logging nodes");
+            console.log(nodes);
+            var actorsOnly = nodes.filter(no => no.group===1);
+            
             if(nodes.indexOf(actor) <= -1){
+                var pos = nodes.indexOf(actor);
+                console.log("logging pos");
+                console.log(pos);
                 nodes.push(actor);
             }
-            //TODO: figure this out
             var link = {source: nodes.indexOf(mov),
                         target: nodes.map(function(n) {return n.name;}).indexOf(actor.name)}
             links.push(link);
         }
-        // console.log("logging nodes");
-        // console.log(nodes);
     }
 
-    // console.log("logging after for loop");
 
     this.setState({
         Links: links,
         Nodes: nodes
     });
-
-    // console.log("Logging in line 176");
-    // console.log(links);
-    // console.log(nodes);
-
-    //read from graphviz and fill out state vars
-    // const elem = document.getElementById("mysvg");
-    // console.log("logging elem");
-    // console.log(elem);
-    // elem.appendChild(this.chart(this.state.nodes, this.state.links));
   }
 
   retrieveMovies(){
