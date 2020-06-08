@@ -7,6 +7,7 @@ import GuestBook from './GuestBook.js';
 import Movies from './Movies.js';
 import AddMovie from './AddMovie.js';
 import CreateList from './CreateList.js';
+import Graph from './Graph.js';
 import Err from './Err.js';
 
 
@@ -29,6 +30,8 @@ export class Body extends Component{
       return <AddMovie/>
     }else if (activeTab === 8){
       return <CreateList/>
+    }else if (activeTab === 9){
+      return <Graph/>
     }
     else{
       return <Err/>

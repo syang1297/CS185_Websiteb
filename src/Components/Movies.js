@@ -46,50 +46,15 @@ export class Movies extends Component{
 
     }
 
-    
     componentDidMount(){
         console.log("component did mount called");
         if (!firebase.apps.length) {
             firebase.initializeApp(Config);
         } 
-        // this.onListenForMessages();
         this.retrieveAllMovies();
         this.setState({shouldLoad: true});
         this.retrieveList();
-        // let ref1 = firebase.database().ref('list');
-        //     ref1.on('value', snapshot =>{
-        //         const lists = snapshot.val();
-        //         let newList = [];
-        //         newList.push("All");
-        //         for(let l in lists){
-        //             newList.push(
-        //                 lists[l].title
-        //             );
-        //         }
-        //         this.setState({lists: newList, search: this.props.items});
-        //     });
     }
-
-    // onListenForMessages(){
-    //     if (!firebase.apps.length) {
-    //         firebase.initializeApp(Config);
-    //     } 
-    //     const db = firebase.firestore();
-    //     this.setState({loading: true});
-    //     let newMovie = [];
-    //     let docRef = db.collection('movies');
-    //     return docRef.get().then(snapshot => {
-    //         let startAtSnapshot= db.collection('movies').orderBy('title').startAt(snapshot);
-    //         return startAtSnapshot.limit(8).get();
-    //     })
-    // }
-
-    // onNextPage = () => {
-    //     this.setState(
-    //         state => ({limit: state.limit + 8}),
-    //         this.onListenForMessages
-    //     );
-    // };
 
     componentWillReceiveProps(nextProps){
         this.setState({search: nextProps.items});
@@ -182,22 +147,6 @@ export class Movies extends Component{
 
     };
 
-    // pagination(){
-    //     //begin pagination attempt
-    //     if (!firebase.apps.length) {
-    //         app = firebase.initializeApp(Config);
-    //     } 
-    //     var db = firebase.firestore(app);
-    //     let docref = db.collection('movies')
-    //     // var first = db.collection("movies")
-    //     // .orderBy("id")
-    //     // .limit(8);
-    //     return docref.get().then(snapshot => {
-    //     console.log(snapshot);
-    //     let startAtSnapshot = db.collection('movies').orderBy('id').startAt(snapshot);
-    //     return startAtSnapshot.limit(8).get();
-    //     });
-    // }
 
     //Get all movies
     retrieveAllMovies(){
@@ -216,7 +165,8 @@ export class Movies extends Component{
                         img: state[s].img,
                         title: state[s].title,
                         director: state[s].director,
-                        rating: state[s].rating
+                        rating: state[s].rating,
+                        actor: state[s].actors
                     });
                 }
             });
@@ -280,7 +230,6 @@ export class Movies extends Component{
     changeList(e){
         //display all movies that have that movie list pair
         console.log(e);
-        // console.log(props);
         if(e.value.trim() === "All"){
             this.retrieveAllMovies();
             this.setState({
@@ -324,17 +273,16 @@ export class Movies extends Component{
     //Adds movie to a list
     addList(e){
         console.log("add list clicked");
-        // console.log("logging current this.list");
-        // console.log(this.state.lists);
         firebase.database().ref('movieListPair/' + currentModal.id.trim() + '-' + e.value).set({
             movie: currentModal.id.trim(),
             list: e.value
-        });
+        }).then(function() {
+            console.log("Writing succeeded.")
+          })
+          .catch(function(error) {
+            console.log("Writing failed: " + error.message)
+          });;
         alert("Movie added to list");
-        // {this.retrieveList}
-        // this.retrieveList();
-        // console.log("logging current this.list");
-        // console.log(this.state.lists);
     }
 
     dimPoster = (e) => {
@@ -391,7 +339,6 @@ export class Movies extends Component{
         
         const loaded = (
             <div>
-                {/* {List} */}
                 <button className="submitBtn1" onClick={this.handleDisplaySearch}>Submit Search</button>
                 <div className="search">
                     <input type="text" className="input" onChange={this.handleSearch} placeholder="Search..." />
